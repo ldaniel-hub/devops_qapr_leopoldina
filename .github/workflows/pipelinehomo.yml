@@ -2,9 +2,9 @@ name: Ambiente de Homologação
 
 on:
   push:
-    branches: [ "homologacao" ]
+    branches: [ "ldaniel-hub-patch-1" ]
   pull_request:
-    branches: [ "homologacao" ]
+    branches: [ "ldaniel-hub-patch-1" ]
 
 jobs:
   build:
