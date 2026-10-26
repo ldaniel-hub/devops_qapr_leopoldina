@@ -1,0 +1,39 @@
+
+name: homologacao
+
+on:
+  push:
+    branches: ["homologacao"]
+  pull_request:
+    branches: ["homologacao"]
+
+jobs:
+  build:
+    # Evita publicar imagens em eventos de pull_request
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do codigo
+        uses: actions/checkout@v4
+
+      - name: Login no Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PWD }}
+
+      - name: Build do site Jekyll
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}:/srv/jekyll" \
+            jekyll/builder:latest \
+            /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
+
+      - name: Build da imagem Docker
+        run: |
+          docker build -t ${{ secrets.DOCKER_USER }}/homologacao:latest .
+
+      - name: Push para o Docker Hub
+        run: |
+          docker push ${{ secrets.DOCKER_USER }}/homologacao:latest
