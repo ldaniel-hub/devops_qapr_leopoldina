@@ -1,928 +1,1316 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="dark">
+<html lang="pt-BR" class="dark scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Black Sabbath & Ozzy Osbourne | Os Pais do Heavy Metal</title>
+    <title>O Templo do Heavy Metal | Black Sabbath & Ozzy Osbourne</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Fonts estilizadas Gothic & Heavy Metal -->
+    <!-- Google Fonts Premium: Gothic & Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Metal+Mania&family=Montserrat:ital,wght@0,300;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@500;700;900&family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
-                        metal: ['"Metal Mania"', 'cursive'],
-                        gothic: ['"Cinzel Decorative"', 'serif'],
+                        gothicHeader: ['"Cinzel Decorative"', 'serif'],
+                        gothic: ['"Cinzel"', 'serif'],
                         sans: ['"Montserrat"', 'sans-serif'],
                     },
                     colors: {
-                        metalBlack: '#0a090e',
-                        metalDark: '#120f1a',
-                        metalPurple: '#2d0b5a',
-                        purpleGlow: '#8b5cf6',
-                        metalGold: '#d4af37',
+                        metalObsidian: '#070609',
+                        metalCharcoal: '#121118',
+                        metalCard: '#1a1824',
+                        agedGold: '#d4af37',
                         goldHover: '#f3ca3e',
-                        crimsonMetal: '#991b1b',
+                        imperialPurple: '#3b0764',
+                        deepPurple: '#2e1065',
+                        crimsonWine: '#701a75',
+                        bloodRed: '#4c0519',
                     },
                     boxShadow: {
-                        'gothic': '0 0 25px rgba(139, 92, 246, 0.25)',
-                        'gold-glow': '0 0 20px rgba(212, 175, 55, 0.3)',
-                        'blood-glow': '0 0 25px rgba(153, 27, 27, 0.4)',
+                        'gold-glow': '0 0 25px rgba(212, 175, 55, 0.25)',
+                        'purple-glow': '0 0 30px rgba(59, 7, 100, 0.4)',
+                        'gothic-card': '0 10px 30px -10px rgba(0, 0, 0, 0.8), 0 0 15px rgba(212, 175, 55, 0.1)',
                     }
                 }
             }
         }
     </script>
+
     <style>
-        /* CSS Inline e Estilos Personalizados */
+        /* Estilos Customizados & Texturas Góticas */
         body {
-            background-color: #0a090e;
+            background-color: #070609;
             color: #e2e8f0;
             overflow-x: hidden;
             background-image: 
-                radial-gradient(circle at 50% 0%, rgba(45, 11, 90, 0.5) 0%, transparent 70%),
-                radial-gradient(circle at 100% 50%, rgba(153, 27, 27, 0.15) 0%, transparent 50%);
+                radial-gradient(circle at 50% 0%, rgba(59, 7, 100, 0.4) 0%, transparent 65%),
+                radial-gradient(circle at 90% 40%, rgba(76, 5, 25, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 10% 80%, rgba(46, 16, 101, 0.3) 0%, transparent 50%);
         }
 
-        /* Efeito Textura Metallic Grunge */
-        .grunge-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(10, 9, 14, 0.85), rgba(10, 9, 14, 0.95)),
-                        url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)" opacity="0.04"/></svg>');
+        /* Molduras Góticas Finas */
+        .gothic-box {
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            position: relative;
+            background: linear-gradient(145deg, rgba(26, 24, 36, 0.95), rgba(18, 17, 24, 0.98));
+        }
+
+        .gothic-box::before {
+            content: '';
+            position: absolute;
+            top: 2px; left: 2px; right: 2px; bottom: 2px;
+            border: 1px solid rgba(212, 175, 55, 0.12);
             pointer-events: none;
-            z-index: 1;
         }
 
-        /* Scrollbar Personalizada Metal */
-        ::-webkit-scrollbar {
-            width: 10px;
+        /* Cantoneiras ornamentadas estilo catedral */
+        .corner-ornament {
+            position: relative;
         }
-        ::-webkit-scrollbar-track {
-            background: #0a090e;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #2d0b5a;
-            border: 1px solid #d4af37;
-            border-radius: 5px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #8b5cf6;
+        .corner-ornament::after {
+            content: '❖';
+            position: absolute;
+            top: -10px; right: -10px;
+            color: #d4af37;
+            font-size: 14px;
+            opacity: 0.8;
         }
 
         /* Animação do Vinil Giro */
-        @keyframes spin-slow {
+        @keyframes vinylSpin {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
-        .animate-spin-slow {
-            animation: spin-slow 8s linear infinite;
+
+        .spin-vinyl {
+            animation: vinylSpin 2.5s linear infinite;
         }
-        .paused {
+
+        .paused-vinyl {
             animation-play-state: paused;
         }
 
-        /* Glowing text effects */
-        .text-glow-purple {
-            text-shadow: 0 0 12px rgba(139, 92, 246, 0.7), 0 0 25px rgba(139, 92, 246, 0.4);
-        }
-        .text-glow-gold {
-            text-shadow: 0 0 10px rgba(212, 175, 55, 0.6), 0 0 20px rgba(212, 175, 55, 0.3);
+        /* Braço do Toca-Discos */
+        .tonearm {
+            transform-origin: 24px 24px;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Efeito Bat Canvas */
-        #batCanvas {
+        .tonearm-playing {
+            transform: rotate(26deg);
+        }
+
+        .tonearm-idle {
+            transform: rotate(0deg);
+        }
+
+        /* Personalização da Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #070609;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2e1065;
+            border: 1px solid #d4af37;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d4af37;
+        }
+
+        /* Sombra de texto metálica */
+        .text-gold-metallic {
+            background: linear-gradient(180deg, #fff2a1 0%, #d4af37 60%, #aa7c11 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Canvas Overlay para Partículas Ambientais */
+        #ambientCanvas {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
             pointer-events: none;
-            z-index: 50;
-        }
-
-        /* Clip path para bordas góticas */
-        .gothic-border {
-            border: 2px solid #2d0b5a;
-            position: relative;
-        }
-        .gothic-border::before {
-            content: '';
-            position: absolute;
-            top: -4px; left: -4px; right: -4px; bottom: -4px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            pointer-events: none;
+            z-index: 1;
+            opacity: 0.4;
         }
     </style>
 </head>
-<body class="font-sans antialiased relative">
+<body class="font-sans antialiased text-gray-200">
 
-    <!-- Ambient Overlay -->
-    <div class="grunge-overlay"></div>
+    <!-- Canvas para efeito sutil de fuligem/brilho -->
+    <canvas id="ambientCanvas"></canvas>
 
-    <!-- Canvas para Animações dos Morcegos em JS -->
-    <canvas id="batCanvas"></canvas>
-
-    <!-- BARRA DE NAVEGAÇÃO -->
-    <nav class="sticky top-0 z-40 bg-metalBlack/90 backdrop-blur-md border-b border-purple-900/50 shadow-lg">
+    <!-- NAVEGAÇÃO FIXA -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-metalObsidian/90 backdrop-blur-md border-b border-agedGold/20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <span class="text-3xl text-metalGold font-metal tracking-wider hover:scale-105 transition-transform cursor-pointer">
-                    ⚡ SABBATH & OZZY
-                </span>
-            </div>
             
-            <!-- Menu Desktop -->
-            <div class="hidden md:flex space-x-6 text-sm font-semibold tracking-wider">
-                <a href="#historia" class="text-gray-300 hover:text-metalGold transition-colors">HISTÓRIA</a>
-                <a href="#discografia" class="text-gray-300 hover:text-metalGold transition-colors">DISCOGRAFIA</a>
-                <a href="#player" class="text-gray-300 hover:text-metalGold transition-colors">PLAYER DE RIFFS</a>
-                <a href="#frases" class="text-gray-300 hover:text-metalGold transition-colors">CITAÇÕES</a>
-                <a href="#quiz" class="text-gray-300 hover:text-metalGold transition-colors">TRIVIA QUIZ</a>
-            </div>
+            <!-- Logo -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <span class="text-2xl font-gothicHeader text-gold-metallic font-bold tracking-wider group-hover:scale-105 transition-transform">
+                    SABBATH & OZZY
+                </span>
+            </a>
 
-            <!-- Botão Especial de Efeito Morcegos -->
-            <button id="btnSpawnBats" onclick="soltarMorcegos(12)" class="relative inline-flex items-center justify-center px-4 py-2 text-xs font-bold tracking-widest text-metalGold uppercase transition-all duration-300 bg-purple-950/60 border border-metalGold/50 rounded-lg hover:bg-purple-900 hover:border-metalGold hover:shadow-gold-glow">
-                🦇 Soltar Morcegos!
+            <!-- Menu Desktop -->
+            <nav class="hidden md:flex items-center space-x-8 text-xs font-semibold tracking-widest uppercase">
+                <a href="#lenda" class="text-gray-300 hover:text-agedGold transition-colors">A Lenda</a>
+                <a href="#membros" class="text-gray-300 hover:text-agedGold transition-colors">Membros Originais</a>
+                <a href="#turnes" class="text-gray-300 hover:text-agedGold transition-colors">Turnês Historicas</a>
+                <a href="#toca-discos" class="text-gray-300 hover:text-agedGold transition-colors">Toca-Discos & Riffs</a>
+                <a href="#discografia" class="text-gray-300 hover:text-agedGold transition-colors">Discografia</a>
+                <a href="#quiz" class="text-gray-300 hover:text-agedGold transition-colors">Trivia</a>
+            </nav>
+
+            <!-- Ação Rápida -->
+            <a href="#toca-discos" class="hidden sm:inline-flex items-center px-4 py-2 border border-agedGold/50 text-agedGold text-xs font-bold tracking-widest uppercase rounded bg-imperialPurple/30 hover:bg-imperialPurple hover:border-agedGold transition-all shadow-gold-glow">
+                ⚡ Ouvir Riffs (Web Audio)
+            </a>
+
+            <!-- Botão Menu Mobile -->
+            <button onclick="toggleMobileMenu()" class="md:hidden text-agedGold p-2 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
             </button>
         </div>
-    </nav>
 
-    <!-- 1. HERO SECTION -->
-    <header class="relative z-10 min-h-[85vh] flex items-center justify-center text-center px-4 py-16 overflow-hidden">
-        <div class="max-w-4xl mx-auto space-y-8">
-            <div class="inline-block bg-purple-950/80 border border-purple-500/40 px-6 py-2 rounded-full text-xs font-semibold tracking-widest text-purple-300 uppercase shadow-gothic animate-pulse">
-                O Nascimento do Heavy Metal • Birmingham 1968
-            </div>
-
-            <h1 class="text-5xl sm:text-7xl lg:text-8xl font-metal tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-metalGold via-purple-300 to-amber-500 drop-shadow-[0_5px_15px_rgba(0,0,0,0.9)] leading-none">
-                BLACK SABBATH
-            </h1>
-            <p class="text-2xl sm:text-4xl font-gothic text-purple-400 text-glow-purple tracking-widest">
-                & OZZY OSBOURNE
-            </p>
-
-            <blockquote class="text-lg sm:text-xl italic font-light text-gray-300 max-w-2xl mx-auto border-l-2 border-metalGold pl-4 py-1">
-                "Nós viemos de uma cidade cinzenta e barulhenta. Criamos uma música que refletia o desespero e a escuridão ao nosso redor... E assim nasceu o Metal."
-                <cite class="block text-sm font-semibold text-metalGold uppercase mt-2 font-sans not-italic">— Ozzy Osbourne</cite>
-            </blockquote>
-
-            <div class="flex flex-wrap justify-center gap-4 pt-4">
-                <a href="#player" class="px-8 py-4 bg-gradient-to-r from-purple-900 to-purple-950 hover:from-purple-800 hover:to-purple-900 text-metalGold border border-metalGold/60 rounded-xl font-bold tracking-wider shadow-gothic transform hover:-translate-y-1 transition-all flex items-center gap-2">
-                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                    Ouvir Riffs Icônicos
-                </a>
-                <a href="#historia" class="px-8 py-4 bg-metalDark/80 hover:bg-metalDark text-gray-200 border border-purple-900/80 rounded-xl font-bold tracking-wider hover:border-purple-500 transform hover:-translate-y-1 transition-all">
-                    Explorar A História
-                </a>
-            </div>
+        <!-- Menu Mobile Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden bg-metalCharcoal border-b border-agedGold/30 px-6 py-4 space-y-3 text-xs font-bold uppercase tracking-wider">
+            <a href="#lenda" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-agedGold">A Lenda</a>
+            <a href="#membros" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-agedGold">Membros Originais</a>
+            <a href="#turnes" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-agedGold">Turnês Históricas</a>
+            <a href="#toca-discos" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-agedGold">Toca-Discos & Riffs</a>
+            <a href="#discografia" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-agedGold">Discografia</a>
+            <a href="#quiz" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-agedGold">Trivia</a>
         </div>
     </header>
 
-    <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-28 pb-24">
+    <!-- 1. HERO SECTION BANNER -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 px-4 overflow-hidden z-10">
+        <div class="max-w-5xl mx-auto text-center space-y-8">
+            
+            <div class="inline-flex items-center space-x-2 bg-imperialPurple/40 border border-agedGold/40 px-5 py-2 rounded-full text-xs font-bold tracking-widest text-agedGold uppercase shadow-purple-glow">
+                <span>✦ O Nascimento do Heavy Metal • Birmingham, 1968 ✦</span>
+            </div>
 
-        <!-- 2. HISTÓRIA & LENDA -->
-        <section id="historia" class="scroll-mt-24 space-y-12">
+            <h1 class="text-5xl sm:text-7xl md:text-8xl font-gothicHeader font-black tracking-wider leading-none text-gold-metallic drop-shadow-[0_10px_20px_rgba(0,0,0,0.9)]">
+                BLACK SABBATH
+            </h1>
+            
+            <p class="text-2xl sm:text-4xl font-gothic text-purple-300 tracking-widest">
+                & OZZY OSBOURNE
+            </p>
+
+            <p class="text-sm sm:text-base text-gray-300 max-w-3xl mx-auto font-light leading-relaxed">
+                Em meio às chaminés e ruídos fabris da Birmingham pós-guerra, quatro jovens redefiniram a história da música ocidental. Unindo afinações graves, o místico "Intervalo do Diabo" e lirismo visceral, ergueram os pilares do Heavy Metal.
+            </p>
+
+            <blockquote class="text-xs sm:text-sm italic text-agedGold/90 max-w-2xl mx-auto border-l-2 border-agedGold pl-4 py-1 text-left sm:text-center">
+                "Nós víamos as pessoas fazendo fila no cinema para ver filmes de horror. Pensamos: por que as pessoas não deveriam sentir esse mesmo arrepio e tensão na música?"
+                <cite class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mt-2 not-italic">— Geezer Butler</cite>
+            </blockquote>
+
+            <div class="pt-6 flex flex-wrap justify-center gap-4">
+                <a href="#membros" class="px-8 py-4 gothic-box text-agedGold font-gothic font-bold text-xs tracking-widest uppercase hover:text-white hover:border-agedGold transition-all shadow-gothic-card">
+                    Conhecer Fundadores
+                </a>
+                <a href="#toca-discos" class="px-8 py-4 bg-gradient-to-r from-imperialPurple to-deepPurple text-white font-gothic font-bold text-xs tracking-widest uppercase border border-agedGold/50 rounded hover:border-agedGold transition-all shadow-purple-glow">
+                    Ativar Sintetizador de Riffs
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-36 pb-32">
+
+        <!-- 2. SEÇÃO: MEMBROS ORIGINAIS DO BLACK SABBATH -->
+        <section id="membros" class="scroll-mt-28 space-y-12">
+            
             <div class="text-center space-y-3">
-                <h2 class="text-4xl sm:text-5xl font-metal text-metalGold tracking-wider text-glow-gold">
-                    A LENDA DA ESCURIDÃO
+                <span class="text-xs font-bold text-purple-400 uppercase tracking-widest">Os Quatro Arquitetos do Aço</span>
+                <h2 class="text-3xl sm:text-5xl font-gothicHeader text-gold-metallic">
+                    MEMBROS ORIGINAIS
                 </h2>
-                <div class="w-24 h-1 bg-purple-600 mx-auto rounded-full"></div>
-                <p class="text-gray-400 max-w-xl mx-auto text-sm sm:text-base">
-                    Da fumaça industrial de Birmingham até a coroação do Príncipe das Trevas.
+                <div class="w-32 h-0.5 bg-gradient-to-r from-transparent via-agedGold to-transparent mx-auto"></div>
+                <p class="text-gray-400 max-w-2xl mx-auto text-xs sm:text-sm">
+                    Conheça a alquimia perfeita dos quatro músicos que deram origem ao som mais pesado do planeta.
                 </p>
             </div>
 
-            <!-- Grid da História -->
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Card 1: Black Sabbath -->
-                <div class="bg-metalDark/90 p-8 rounded-2xl border border-purple-900/60 shadow-gothic relative overflow-hidden group hover:border-purple-600 transition-all">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-purple-900/10 rounded-full blur-2xl group-hover:bg-purple-900/30 transition-all"></div>
-                    <div class="flex items-center space-x-4 mb-6">
-                        <span class="text-4xl">🦇</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- CARD 1: OZZY OSBOURNE -->
+                <div class="gothic-box p-8 rounded-lg shadow-gothic-card transition-all hover:border-agedGold/70 group">
+                    <div class="flex items-start justify-between mb-6">
                         <div>
-                            <h3 class="text-2xl font-gothic text-purple-300">Black Sabbath</h3>
-                            <p class="text-xs text-metalGold uppercase tracking-widest">Os Pioneiros do Heavy Metal</p>
+                            <span class="text-xs font-bold uppercase tracking-widest text-agedGold">Vocais & Performance</span>
+                            <h3 class="text-2xl sm:text-3xl font-gothic text-white font-bold group-hover:text-agedGold transition-colors">
+                                OZZY OSBOURNE
+                            </h3>
+                            <span class="text-xs text-purple-400 italic">"The Prince of Darkness"</span>
+                        </div>
+                        <div class="w-12 h-12 rounded-full border border-agedGold/40 bg-imperialPurple/40 flex items-center justify-center text-2xl shadow-gold-glow">
+                            🦇
                         </div>
                     </div>
-                    <p class="text-gray-300 text-sm leading-relaxed space-y-3">
-                        Em 1968, em Birmingham (Inglaterra), Ozzy Osbourne, Tony Iommi, Geezer Butler e Bill Ward formaram uma banda que mudaria o rock para sempre. Após um acidente nas fábricas que cortou as pontas dos dedos de Tony Iommi, ele desenvolveu uma forma única de tocar desafinando a guitarra em tons mais graves.
-                    </p>
-                    <p class="text-gray-300 text-sm leading-relaxed mt-3">
-                        Inspirados por filmes de terror, o grupo decidiu criar músicas que causassem a mesma tensão e arrepio. Com o uso do misterioso <i>Trítono</i> ("Intervalo do Diabo"), o álbum homônimo de 1970 inaugurou oficialmente o som do Heavy Metal.
-                    </p>
+
+                    <div class="space-y-4 text-xs sm:text-sm text-gray-300 leading-relaxed">
+                        <p>
+                            <strong>A Voz do Metal:</strong> Com um alcance vocal inconfundível, agudo e melancólico, John Michael Osbourne trouxe a dramaticidade ideal para o Sabbath. Sua presença de palco magnética e teatralidade crua redefiniram a função do frontman no rock mundial.
+                        </p>
+                        <p>
+                            <strong>Carreira Solo & Legado:</strong> Ao sair do Sabbath em 1979, Ozzy provou seu gênio ao recrutar o guitarrista Randy Rhoads e lançar obras imortais como <i>Blizzard of Ozz</i> e <i>Diary of a Madman</i>, tornando-se um dos maiores ícones culturais da história.
+                        </p>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-purple-950 flex flex-col space-y-2">
+                        <span class="text-[11px] font-semibold text-agedGold">Frase Marcante:</span>
+                        <p class="text-xs italic text-gray-400">
+                            "De todas as coisas incríveis que perdi na minha vida, é da minha mente que sinto mais falta!"
+                        </p>
+                    </div>
                 </div>
 
-                <!-- Card 2: Ozzy Osbourne -->
-                <div class="bg-metalDark/90 p-8 rounded-2xl border border-purple-900/60 shadow-gothic relative overflow-hidden group hover:border-purple-600 transition-all">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-amber-900/10 rounded-full blur-2xl group-hover:bg-amber-900/20 transition-all"></div>
-                    <div class="flex items-center space-x-4 mb-6">
-                        <span class="text-4xl">👑</span>
+                <!-- CARD 2: TONY IOMMI -->
+                <div class="gothic-box p-8 rounded-lg shadow-gothic-card transition-all hover:border-agedGold/70 group">
+                    <div class="flex items-start justify-between mb-6">
                         <div>
-                            <h3 class="text-2xl font-gothic text-amber-300">Ozzy Osbourne</h3>
-                            <p class="text-xs text-metalGold uppercase tracking-widest">O Príncipe das Trevas</p>
+                            <span class="text-xs font-bold uppercase tracking-widest text-agedGold">Guitarra & Composição</span>
+                            <h3 class="text-2xl sm:text-3xl font-gothic text-white font-bold group-hover:text-agedGold transition-colors">
+                                TONY IOMMI
+                            </h3>
+                            <span class="text-xs text-purple-400 italic">"O Pai dos Riffs"</span>
+                        </div>
+                        <div class="w-12 h-12 rounded-full border border-agedGold/40 bg-imperialPurple/40 flex items-center justify-center text-2xl shadow-gold-glow">
+                            🎸
                         </div>
                     </div>
-                    <p class="text-gray-300 text-sm leading-relaxed">
-                        John Michael "Ozzy" Osbourne tornou-se o vocalista mais emblemático do rock. Sua presença de palco insana, timbre vocal inconfundível e carisma teatral o transformaram num ícone global.
-                    </p>
-                    <p class="text-gray-300 text-sm leading-relaxed mt-3">
-                        Após deixar o Black Sabbath em 1979, muitos achavam que sua carreira havia acabado. Porém, ao lado do genial guitarrista Randy Rhoads, Ozzy renasceu com o álbum <i>Blizzard of Ozz</i>, lançando hinos como "Crazy Train" e consolidando sua império na carreira solo.
-                    </p>
-                </div>
-            </div>
 
-            <!-- Linha do Tempo Resumida -->
-            <div class="bg-metalDark/60 p-6 rounded-2xl border border-purple-950">
-                <h4 class="text-center font-metal text-xl text-metalGold mb-6 tracking-wider">MARCOS HISTÓRICOS</h4>
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                    <div class="p-4 bg-purple-950/30 rounded-xl border border-purple-900/40">
-                        <span class="block text-2xl font-bold text-purple-400 font-gothic">1970</span>
-                        <span class="text-xs text-gray-300">Lançamento de 'Black Sabbath' e 'Paranoid'</span>
+                    <div class="space-y-4 text-xs sm:text-sm text-gray-300 leading-relaxed">
+                        <p>
+                            <strong>Superação Histórica:</strong> Aos 17 anos, Tony sofreu um acidente fabril que decepou as pontas dos seus dedos da mão direita. Sem desistir, criou próteses de plástico acrílico e couro, afinou as cordas em tons mais graves (D e C#) para diminuir a tensão.
+                        </p>
+                        <p>
+                            <strong>A Invenção do Riff:</strong> Essa afinação frouxa aliada à distorção pesada gerou um timbre escuro, ressonante e gigantesco. Iommi é amplamente reconhecido como o arquiteto dos riffs primordiais do Doom e Heavy Metal.
+                        </p>
                     </div>
-                    <div class="p-4 bg-purple-950/30 rounded-xl border border-purple-900/40">
-                        <span class="block text-2xl font-bold text-purple-400 font-gothic">1980</span>
-                        <span class="text-xs text-gray-300">Ozzy lança 'Blizzard of Ozz' solo</span>
-                    </div>
-                    <div class="p-4 bg-purple-950/30 rounded-xl border border-purple-900/40">
-                        <span class="block text-2xl font-bold text-purple-400 font-gothic">1982</span>
-                        <span class="text-xs text-gray-300">O folclórico incidente do Morcego no palco</span>
-                    </div>
-                    <div class="p-4 bg-purple-950/30 rounded-xl border border-purple-900/40">
-                        <span class="block text-2xl font-bold text-purple-400 font-gothic">2017</span>
-                        <span class="text-xs text-gray-300">Turnê de despedida 'The End' do Sabbath</span>
+
+                    <div class="mt-6 pt-4 border-t border-purple-950 flex flex-col space-y-2">
+                        <span class="text-[11px] font-semibold text-agedGold">Frase Marcante:</span>
+                        <p class="text-xs italic text-gray-400">
+                            "Os médicos me disseram que eu nunca mais tocaria. Eu decidi que eles estavam errados."
+                        </p>
                     </div>
                 </div>
+
+                <!-- CARD 3: GEEZER BUTLER -->
+                <div class="gothic-box p-8 rounded-lg shadow-gothic-card transition-all hover:border-agedGold/70 group">
+                    <div class="flex items-start justify-between mb-6">
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-widest text-agedGold">Contrabaixo & Letras</span>
+                            <h3 class="text-2xl sm:text-3xl font-gothic text-white font-bold group-hover:text-agedGold transition-colors">
+                                GEEZER BUTLER
+                            </h3>
+                            <span class="text-xs text-purple-400 italic">"O Poeta das Trevas"</span>
+                        </div>
+                        <div class="w-12 h-12 rounded-full border border-agedGold/40 bg-imperialPurple/40 flex items-center justify-center text-2xl shadow-gold-glow">
+                            ⚡
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 text-xs sm:text-sm text-gray-300 leading-relaxed">
+                        <p>
+                            <strong>Inovação no Baixo:</strong> Terence "Geezer" Butler foi um dos primeiros baixistas a afinar o instrumento em D/C# para acompanhar Iommi e utilizar pedal de Wah-Wah no baixo (como no solo marcante de "N.I.B.").
+                        </p>
+                        <p>
+                            <strong>Lirismo Oculto e Político:</strong> Apaixonado por ficção científica e ocultismo, Geezer escreveu a quase totalidade das letras do Sabbath. Suas composições abordavam fascismo, guerras, religião e ansiedade existencial de forma poética e crítica.
+                        </p>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-purple-950 flex flex-col space-y-2">
+                        <span class="text-[11px] font-semibold text-agedGold">Frase Marcante:</span>
+                        <p class="text-xs italic text-gray-400">
+                            "Eu via o mundo real repleto de guerras e injustiças. Nossas músicas refletiam os demônios da própria sociedade."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CARD 4: BILL WARD -->
+                <div class="gothic-box p-8 rounded-lg shadow-gothic-card transition-all hover:border-agedGold/70 group">
+                    <div class="flex items-start justify-between mb-6">
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-widest text-agedGold">Bateria & Percussão</span>
+                            <h3 class="text-2xl sm:text-3xl font-gothic text-white font-bold group-hover:text-agedGold transition-colors">
+                                BILL WARD
+                            </h3>
+                            <span class="text-xs text-purple-400 italic">"O Pulso Dinâmico"</span>
+                        </div>
+                        <div class="w-12 h-12 rounded-full border border-agedGold/40 bg-imperialPurple/40 flex items-center justify-center text-2xl shadow-gold-glow">
+                            🥁
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 text-xs sm:text-sm text-gray-300 leading-relaxed">
+                        <p>
+                            <strong>Pegada de Jazz & Metal:</strong> Influenciado por lendas do jazz como Gene Krupa e Buddy Rich, Bill Ward trouxe para o Sabbath uma dinâmica rítmica imprevisível, alternando explosões avassaladoras de peso com contratempos sofisticados.
+                        </p>
+                        <p>
+                            <strong>A Bateria do Metal:</strong> Sem a precisão mecânica moderna, a bateria de Ward 'respirava' junto com as guitarras de Iommi, conferindo a álbuns como <i>Paranoid</i> e <i>Master of Reality</i> um balanço orgânico e pesado inigualável.
+                        </p>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-purple-950 flex flex-col space-y-2">
+                        <span class="text-[11px] font-semibold text-agedGold">Frase Marcante:</span>
+                        <p class="text-xs italic text-gray-400">
+                            "Nós não tocávamos apenas com as mãos; tocávamos com todo o peso do nosso corpo e da nossa história."
+                        </p>
+                    </div>
+                </div>
+
             </div>
         </section>
 
-        <!-- 3. DISCOGRAFIA COM FILTRO INTERATIVO -->
-        <section id="discografia" class="scroll-mt-24 space-y-8">
+        <!-- 3. SEÇÃO: TURNÊS HISTÓRICAS E CONCERTOS ICÔNICOS -->
+        <section id="turnes" class="scroll-mt-28 space-y-12">
+            
             <div class="text-center space-y-3">
-                <h2 class="text-4xl sm:text-5xl font-metal text-metalGold tracking-wider text-glow-gold">
-                    DISCOGRAFIA LENDÁRIA
+                <span class="text-xs font-bold text-purple-400 uppercase tracking-widest">A Estrutura dos Palcos Mundiais</span>
+                <h2 class="text-3xl sm:text-5xl font-gothicHeader text-gold-metallic">
+                    TURNÊS HISTÓRICAS
                 </h2>
-                <div class="w-24 h-1 bg-purple-600 mx-auto rounded-full"></div>
-                <p class="text-gray-400 text-sm">Filtre entre as eras de ouro do Sabbath e a trajetória solo de Ozzy.</p>
+                <div class="w-32 h-0.5 bg-gradient-to-r from-transparent via-agedGold to-transparent mx-auto"></div>
+                <p class="text-gray-400 max-w-2xl mx-auto text-xs sm:text-sm">
+                    Filtre e explore os concertos lendários que moldaram o império do Rock.
+                </p>
             </div>
 
-            <!-- Botoes de Filtro -->
+            <!-- Filtros por Era -->
             <div class="flex flex-wrap justify-center gap-3">
-                <button onclick="filtrarDiscografia('todos')" class="btn-filtro active px-5 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-purple-900 text-metalGold border border-metalGold">
-                    Todos os Álbuns
+                <button onclick="filtrarTurnes('todas')" class="btn-era active px-5 py-2.5 rounded text-xs font-bold uppercase tracking-wider bg-imperialPurple text-agedGold border border-agedGold transition-all">
+                    Todas as Eras
                 </button>
-                <button onclick="filtrarDiscografia('sabbath-ozzy')" class="btn-filtro px-5 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-metalDark text-gray-400 border border-purple-900/50 hover:text-white">
-                    Black Sabbath (Era Ozzy)
+                <button onclick="filtrarTurnes('sabbath-70s')" class="btn-era px-5 py-2.5 rounded text-xs font-bold uppercase tracking-wider bg-metalCharcoal text-gray-400 border border-purple-900/50 hover:text-white transition-all">
+                    Sabbath Clássico (1970-1978)
                 </button>
-                <button onclick="filtrarDiscografia('sabbath-outros')" class="btn-filtro px-5 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-metalDark text-gray-400 border border-purple-900/50 hover:text-white">
-                    Black Sabbath (Outras Eras)
+                <button onclick="filtrarTurnes('ozzy-solo')" class="btn-era px-5 py-2.5 rounded text-xs font-bold uppercase tracking-wider bg-metalCharcoal text-gray-400 border border-purple-900/50 hover:text-white transition-all">
+                    Ozzy Solo & Randy Rhoads (1980-1986)
                 </button>
-                <button onclick="filtrarDiscografia('ozzy-solo')" class="btn-filtro px-5 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-metalDark text-gray-400 border border-purple-900/50 hover:text-white">
-                    Ozzy Osbourne Solo
+                <button onclick="filtrarTurnes('despedida')" class="btn-era px-5 py-2.5 rounded text-xs font-bold uppercase tracking-wider bg-metalCharcoal text-gray-400 border border-purple-900/50 hover:text-white transition-all">
+                    Reuniões & 'The End' (2016-2017)
                 </button>
             </div>
 
-            <!-- Grid dos Álbuns -->
-            <div id="gridDiscografia" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Container da Linha do Tempo -->
+            <div id="timelineContainer" class="space-y-6 relative border-l-2 border-agedGold/30 ml-4 sm:ml-8 pl-6 sm:pl-10">
                 <!-- Inserido dinamicamente via JS -->
             </div>
         </section>
 
-        <!-- 4. PLAYER DE ÁUDIO SIMULADO (SINTETIZADOR WEB AUDIO API) -->
-        <section id="player" class="scroll-mt-24 bg-gradient-to-b from-metalDark to-black p-8 rounded-3xl border-2 border-purple-900/80 shadow-gothic space-y-8 relative overflow-hidden">
-            <div class="text-center space-y-2">
-                <span class="text-xs font-bold uppercase tracking-widest text-purple-400">Sintetizador Web Audio API</span>
-                <h2 class="text-3xl sm:text-4xl font-metal text-metalGold tracking-wider">
-                    PLAYER DE RIFFS ICÔNICOS
+        <!-- 4. TOCA-DISCOS INTERATIVO & SINTETIZADOR DE RIFFS (WEB AUDIO API) -->
+        <section id="toca-discos" class="scroll-mt-28 gothic-box p-6 sm:p-12 rounded-xl shadow-gothic-card space-y-10 relative overflow-hidden">
+            
+            <div class="text-center space-y-3">
+                <span class="text-xs font-bold text-agedGold uppercase tracking-widest">Sintetizador Analógico Virtual</span>
+                <h2 class="text-3xl sm:text-5xl font-gothicHeader text-gold-metallic">
+                    TOCA-DISCOS DE RIFFS
                 </h2>
-                <p class="text-xs text-gray-400">Clique para reproduzir os arranjos sintéticos das guitarras pesadas!</p>
+                <p class="text-xs sm:text-sm text-gray-400 max-w-xl mx-auto">
+                    Escolha um clássico e observe o braço do toca-discos se mover para gerar os riffs em tempo real via síntese matemática de som.
+                </p>
             </div>
 
-            <div class="grid lg:grid-cols-12 gap-8 items-center">
-                <!-- Tocador / Vinil -->
-                <div class="lg:col-span-5 flex flex-col items-center justify-center space-y-4">
-                    <div class="relative w-48 h-48 sm:w-64 sm:h-64 flex items-center justify-center">
-                        <!-- Disco Vinil -->
-                        <div id="vinylRecord" class="w-full h-full rounded-full bg-gradient-to-tr from-gray-950 via-gray-900 to-gray-800 border-8 border-gray-950 flex items-center justify-center shadow-2xl animate-spin-slow paused transition-all">
-                            <div class="w-24 h-24 rounded-full border-4 border-amber-600/40 bg-purple-950 flex items-center justify-center text-center p-2">
-                                <span id="playerVinylTitle" class="text-[10px] font-bold text-metalGold uppercase">SABBATH</span>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                
+                <!-- TOCA-DISCOS VISUAL (CSS / SVG) -->
+                <div class="lg:col-span-6 flex flex-col items-center justify-center">
+                    <div class="relative w-72 h-72 sm:w-96 sm:h-96 bg-gradient-to-br from-neutral-900 via-neutral-950 to-black p-6 rounded-3xl border-4 border-amber-950/80 shadow-2xl flex items-center justify-center">
+                        
+                        <!-- Prato de Alumínio -->
+                        <div class="w-full h-full rounded-full bg-neutral-800 border-4 border-neutral-700 flex items-center justify-center relative shadow-inner overflow-hidden">
+                            
+                            <!-- Disco de Vinil Giro -->
+                            <div id="vinylDisc" class="w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-gradient-to-tr from-black via-neutral-900 to-neutral-800 border-4 border-black flex items-center justify-center shadow-2xl spin-vinyl paused-vinyl relative">
+                                
+                                <!-- Sulcos do Vinil -->
+                                <div class="absolute inset-2 rounded-full border border-neutral-700/20"></div>
+                                <div class="absolute inset-6 rounded-full border border-neutral-700/20"></div>
+                                <div class="absolute inset-10 rounded-full border border-neutral-700/20"></div>
+                                <div class="absolute inset-14 rounded-full border border-neutral-700/20"></div>
+                                <div class="absolute inset-20 rounded-full border border-neutral-700/20"></div>
+
+                                <!-- Rótulo Central -->
+                                <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-imperialPurple border-4 border-agedGold flex flex-col items-center justify-center text-center p-2 z-10 shadow-lg">
+                                    <span class="text-[9px] font-black text-agedGold uppercase tracking-wider">BLACK SABBATH</span>
+                                    <span id="labelTrackName" class="text-[8px] font-bold text-white uppercase truncate max-w-[80px]">PARANOID</span>
+                                    <span class="text-[7px] text-amber-300 font-mono">33⅓ RPM</span>
+                                </div>
                             </div>
                         </div>
-                        <!-- Agulha -->
-                        <div class="absolute -top-2 right-4 w-12 h-20 origin-top-right transition-transform duration-500 transform rotate-12" id="stylus">
-                            <div class="w-2 h-16 bg-gray-400 rounded-full mx-auto"></div>
-                            <div class="w-4 h-4 bg-metalGold rounded-full -mt-2"></div>
+
+                        <!-- Braço do Toca-Discos (Tonearm) -->
+                        <div class="absolute top-6 right-6 w-16 h-48 pointer-events-none z-20">
+                            <div id="tonearm" class="tonearm tonearm-idle w-full h-full relative">
+                                <!-- Pivot Base -->
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-b from-gray-400 to-gray-700 border-2 border-agedGold shadow-md"></div>
+                                <!-- Haste Metalica -->
+                                <div class="w-2 h-36 bg-gradient-to-r from-gray-300 via-gray-100 to-gray-400 mx-auto rounded-full shadow"></div>
+                                <!-- Cabeçote / Agulha -->
+                                <div class="w-5 h-8 bg-agedGold rounded-sm mx-auto -mt-2 border border-black shadow-lg"></div>
+                            </div>
                         </div>
+
                     </div>
                 </div>
 
-                <!-- Painel de Controles & Músicas -->
-                <div class="lg:col-span-7 space-y-6">
-                    <!-- Info da Faixa Atual -->
-                    <div class="bg-purple-950/40 p-4 rounded-xl border border-purple-800/40 flex items-center justify-between">
+                <!-- CONTROLES & SELEÇÃO DE RIFFS -->
+                <div class="lg:col-span-6 space-y-6">
+                    
+                    <!-- Display da Faixa Atual -->
+                    <div class="bg-metalCharcoal p-4 rounded-lg border border-agedGold/30 flex items-center justify-between shadow-inner">
                         <div>
-                            <p id="playerArtist" class="text-xs text-purple-400 font-bold uppercase">Black Sabbath</p>
-                            <h3 id="playerTrackTitle" class="text-xl font-bold text-metalGold">Paranoid (1970)</h3>
+                            <span id="displayArtist" class="text-xs font-bold text-purple-400 uppercase tracking-wider block">BLACK SABBATH (1970)</span>
+                            <h3 id="displayTrack" class="text-xl sm:text-2xl font-gothic text-agedGold font-bold">Paranoid</h3>
                         </div>
-                        <span id="playerStatus" class="px-3 py-1 bg-purple-900/60 rounded-full text-xs text-purple-300 font-mono">Pausado</span>
+                        <span id="displayStatus" class="px-3 py-1 bg-imperialPurple/50 border border-agedGold/40 text-agedGold text-xs font-mono rounded">Pausado</span>
                     </div>
 
-                    <!-- Canvas do Visualizador de Áudio -->
-                    <canvas id="visualizerCanvas" class="w-full h-16 bg-black/60 rounded-lg border border-purple-900/50"></canvas>
+                    <!-- Canvas do Visualizador em Tempo Real -->
+                    <div class="space-y-1">
+                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Visualizador de Frequência (Osciloscópio):</span>
+                        <canvas id="audioVisualizer" class="w-full h-20 bg-black/80 rounded border border-purple-900/60 shadow-inner"></canvas>
+                    </div>
 
-                    <!-- Botões de Ação -->
-                    <div class="flex items-center justify-between gap-4">
-                        <button onclick="toggleAudio()" id="btnPlayPause" class="flex-1 py-3 bg-metalGold hover:bg-goldHover text-black font-extrabold rounded-xl transition-all shadow-gold-glow flex items-center justify-center gap-2">
-                            <span id="playIcon">▶ Tocar Riff</span>
+                    <!-- Painel de Seleção de RPM / Pitch -->
+                    <div class="flex items-center justify-between bg-metalCharcoal/60 p-3 rounded border border-purple-900/40">
+                        <span class="text-xs font-bold text-gray-300">Velocidade (RPM):</span>
+                        <div class="flex space-x-2">
+                            <button onclick="setRPM(1.0, '33')" id="rpm33" class="px-3 py-1 bg-imperialPurple border border-agedGold text-agedGold text-xs font-bold rounded">33 RPM</button>
+                            <button onclick="setRPM(1.36, '45')" id="rpm45" class="px-3 py-1 bg-black/40 border border-purple-900 text-gray-400 text-xs font-bold rounded hover:text-white">45 RPM</button>
+                            <button onclick="setRPM(0.75, '16')" id="rpm16" class="px-3 py-1 bg-black/40 border border-purple-900 text-gray-400 text-xs font-bold rounded hover:text-white">16 RPM (Doom)</button>
+                        </div>
+                    </div>
+
+                    <!-- Botão Master Play/Pause e Volume -->
+                    <div class="flex items-center gap-4">
+                        <button id="btnPlayMaster" onclick="toggleSynthPlay()" class="flex-1 py-4 bg-gradient-to-r from-agedGold to-amber-600 hover:from-amber-400 hover:to-agedGold text-black font-gothic font-bold text-sm tracking-widest uppercase rounded shadow-gold-glow transition-all active:scale-98 flex items-center justify-center gap-2">
+                            <span id="playMasterText">▶ Iniciar Leitura do Disco</span>
                         </button>
-                        <div class="flex items-center space-x-2 bg-black/40 px-4 py-2 rounded-xl border border-purple-900/40">
-                            <span class="text-xs text-gray-400">Volume:</span>
-                            <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="0.7" onchange="setVolume(this.value)" class="w-20 accent-purple-500 cursor-pointer">
+                        
+                        <div class="flex items-center space-x-2 bg-metalCharcoal px-3 py-3 rounded border border-purple-900/40">
+                            <span class="text-xs text-gray-400">Vol:</span>
+                            <input type="range" id="volumeControl" min="0" max="1" step="0.05" value="0.7" oninput="updateVolume(this.value)" class="w-20 accent-agedGold cursor-pointer">
                         </div>
                     </div>
 
-                    <!-- Lista de Faixas Selecionáveis -->
+                    <!-- Seletor das Faixas -->
                     <div class="space-y-2">
-                        <p class="text-xs font-bold text-gray-400 uppercase tracking-wider">Selecione uma Música:</p>
-                        <div id="trackList" class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                            <!-- Inserido dinamicamente pelo JS -->
+                        <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Músicas Disponíveis para Sintetizar:</span>
+                        <div id="riffsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <!-- Inserido dinamicamente via JS -->
                         </div>
                     </div>
+
                 </div>
             </div>
-        </section>
 
-        <!-- 5. GERADOR DE FRASES DO OZZY -->
-        <section id="frases" class="scroll-mt-24 space-y-8">
-            <div class="text-center space-y-3">
-                <h2 class="text-4xl sm:text-5xl font-metal text-metalGold tracking-wider text-glow-gold">
-                    SABEDORIA DO PRÍNCIPE DAS TREVAS
-                </h2>
-                <div class="w-24 h-1 bg-purple-600 mx-auto rounded-full"></div>
-                <p class="text-gray-400 text-sm">Gerador interativo de frases e histórias hilárias de Ozzy Osbourne.</p>
-            </div>
-
-            <div class="bg-metalDark p-8 sm:p-12 rounded-3xl border border-purple-900/60 shadow-gothic text-center space-y-8 relative">
-                <div class="text-6xl text-purple-800 font-serif opacity-30 absolute top-4 left-6">“</div>
-                
-                <p id="ozzyQuoteText" class="text-xl sm:text-2xl font-gothic text-purple-200 leading-relaxed max-w-3xl mx-auto min-h-[80px] flex items-center justify-center">
-                    "De todas as coisas que perdi ao longo da vida, é da minha mente que sinto mais falta!"
+            <!-- PAINEL DE CONFORMIDADE LGPD & DIREITOS AUTORAIS -->
+            <div class="mt-8 pt-6 border-t border-agedGold/20 bg-metalObsidian/80 p-4 rounded text-xs text-gray-400 space-y-2">
+                <div class="flex items-center space-x-2 text-agedGold font-bold uppercase tracking-wider">
+                    <span>🛡️ Transparência, Conformidade LGPD & Direitos Autorais</span>
+                </div>
+                <p class="leading-relaxed">
+                    <strong>Nota Legal de Propriedade Intelectual & Isenção de MP3:</strong> O áudio produzido neste toca-discos é sintetizado inteiramente em tempo real por algoritmos matemáticos no próprio navegador do usuário através da <em>Web Audio API</em> (Web API nativa W3C). Não são utilizados arquivos de áudio gravados, samples MP3/WAV ou fonogramas protegidos por direitos autorais.
                 </p>
+                <p class="leading-relaxed">
+                    <strong>Privacidade & LGPD:</strong> Esta aplicação Single Page Application (SPA) é puramente interativa e não realiza coleta, armazenamento ou compartilhamento de nenhum dado pessoal, cookies de rastreamento ou dados do dispositivo, operando em conformidade total com a Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018).
+                </p>
+            </div>
 
-                <div class="pt-4">
-                    <button onclick="gerarFraseOzzy()" class="px-8 py-3 bg-gradient-to-r from-purple-800 to-purple-950 hover:from-purple-700 hover:to-purple-900 text-metalGold border border-metalGold/50 rounded-xl font-bold tracking-wider hover:shadow-gold-glow transition-all active:scale-95">
-                        ⚡ Nova Frase Insana
-                    </button>
+        </section>
+
+        <!-- 5. SEÇÃO: DISCOGRAFIA FUNDAMENTAL -->
+        <section id="discografia" class="scroll-mt-28 space-y-12">
+            
+            <div class="text-center space-y-3">
+                <span class="text-xs font-bold text-purple-400 uppercase tracking-widest">Obras Imortais em Vinil</span>
+                <h2 class="text-3xl sm:text-5xl font-gothicHeader text-gold-metallic">
+                    DISCOGRAFIA FUNDAMENTAL
+                </h2>
+                <div class="w-32 h-0.5 bg-gradient-to-r from-transparent via-agedGold to-transparent mx-auto"></div>
+                <p class="text-gray-400 max-w-2xl mx-auto text-xs sm:text-sm">
+                    Os discos essenciais que moldaram gerações do Heavy Metal e Hard Rock.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- ALBUM 1 -->
+                <div class="gothic-box p-6 rounded-lg shadow-gothic-card hover:border-agedGold/80 transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="relative overflow-hidden rounded mb-4 h-52 bg-purple-950 flex items-center justify-center border border-agedGold/20">
+                            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500&q=80" alt="Black Sabbath Album" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-70 group-hover:opacity-100">
+                            <span class="absolute top-2 right-2 px-2 py-1 bg-black/90 text-agedGold font-mono text-xs font-bold border border-agedGold/30">1970</span>
+                        </div>
+                        <span class="text-[10px] text-purple-400 font-bold uppercase tracking-widest block">Black Sabbath</span>
+                        <h3 class="text-xl font-gothic text-white font-bold group-hover:text-agedGold transition-colors">Black Sabbath</h3>
+                        <p class="text-xs text-gray-300 mt-2 leading-relaxed">
+                            Onde tudo começou. Gravado em apenas um dia, o álbum de estreia trouxe o Trítono em sua música título, inaugurando o gênero.
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-purple-950/60 flex justify-between items-center text-xs">
+                        <span class="text-gray-400">Destaques:</span>
+                        <span class="text-agedGold font-semibold">Black Sabbath, N.I.B.</span>
+                    </div>
                 </div>
+
+                <!-- ALBUM 2 -->
+                <div class="gothic-box p-6 rounded-lg shadow-gothic-card hover:border-agedGold/80 transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="relative overflow-hidden rounded mb-4 h-52 bg-purple-950 flex items-center justify-center border border-agedGold/20">
+                            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=500&q=80" alt="Paranoid Album" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-70 group-hover:opacity-100">
+                            <span class="absolute top-2 right-2 px-2 py-1 bg-black/90 text-agedGold font-mono text-xs font-bold border border-agedGold/30">1970</span>
+                        </div>
+                        <span class="text-[10px] text-purple-400 font-bold uppercase tracking-widest block">Black Sabbath</span>
+                        <h3 class="text-xl font-gothic text-white font-bold group-hover:text-agedGold transition-colors">Paranoid</h3>
+                        <p class="text-xs text-gray-300 mt-2 leading-relaxed">
+                            Considerado por muitos a bíblia do Heavy Metal, com hinos atemporais que definiram a cultura do rock mundial.
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-purple-950/60 flex justify-between items-center text-xs">
+                        <span class="text-gray-400">Destaques:</span>
+                        <span class="text-agedGold font-semibold">Paranoid, Iron Man, War Pigs</span>
+                    </div>
+                </div>
+
+                <!-- ALBUM 3 -->
+                <div class="gothic-box p-6 rounded-lg shadow-gothic-card hover:border-agedGold/80 transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="relative overflow-hidden rounded mb-4 h-52 bg-purple-950 flex items-center justify-center border border-agedGold/20">
+                            <img src="https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?w=500&q=80" alt="Master of Reality" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-70 group-hover:opacity-100">
+                            <span class="absolute top-2 right-2 px-2 py-1 bg-black/90 text-agedGold font-mono text-xs font-bold border border-agedGold/30">1971</span>
+                        </div>
+                        <span class="text-[10px] text-purple-400 font-bold uppercase tracking-widest block">Black Sabbath</span>
+                        <h3 class="text-xl font-gothic text-white font-bold group-hover:text-agedGold transition-colors">Master of Reality</h3>
+                        <p class="text-xs text-gray-300 mt-2 leading-relaxed">
+                            O nascimento do Sludge e Doom Metal. Afinações ainda mais graves e riffs densos que influenciaram o Grunge e Sludge.
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-purple-950/60 flex justify-between items-center text-xs">
+                        <span class="text-gray-400">Destaques:</span>
+                        <span class="text-agedGold font-semibold">Children of the Grave, Into the Void</span>
+                    </div>
+                </div>
+
+                <!-- ALBUM 4 -->
+                <div class="gothic-box p-6 rounded-lg shadow-gothic-card hover:border-agedGold/80 transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="relative overflow-hidden rounded mb-4 h-52 bg-purple-950 flex items-center justify-center border border-agedGold/20">
+                            <img src="https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=500&q=80" alt="Blizzard of Ozz" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-70 group-hover:opacity-100">
+                            <span class="absolute top-2 right-2 px-2 py-1 bg-black/90 text-agedGold font-mono text-xs font-bold border border-agedGold/30">1980</span>
+                        </div>
+                        <span class="text-[10px] text-purple-400 font-bold uppercase tracking-widest block">Ozzy Osbourne Solo</span>
+                        <h3 class="text-xl font-gothic text-white font-bold group-hover:text-agedGold transition-colors">Blizzard of Ozz</h3>
+                        <p class="text-xs text-gray-300 mt-2 leading-relaxed">
+                            A triunfante renascença de Ozzy solo ao lado de Randy Rhoads, unindo virtuosismo neoclássico à energia do rock dos anos 80.
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-purple-950/60 flex justify-between items-center text-xs">
+                        <span class="text-gray-400">Destaques:</span>
+                        <span class="text-agedGold font-semibold">Crazy Train, Mr. Crowley</span>
+                    </div>
+                </div>
+
+                <!-- ALBUM 5 -->
+                <div class="gothic-box p-6 rounded-lg shadow-gothic-card hover:border-agedGold/80 transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="relative overflow-hidden rounded mb-4 h-52 bg-purple-950 flex items-center justify-center border border-agedGold/20">
+                            <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=500&q=80" alt="Diary of a Madman" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-70 group-hover:opacity-100">
+                            <span class="absolute top-2 right-2 px-2 py-1 bg-black/90 text-agedGold font-mono text-xs font-bold border border-agedGold/30">1981</span>
+                        </div>
+                        <span class="text-[10px] text-purple-400 font-bold uppercase tracking-widest block">Ozzy Osbourne Solo</span>
+                        <h3 class="text-xl font-gothic text-white font-bold group-hover:text-agedGold transition-colors">Diary of a Madman</h3>
+                        <p class="text-xs text-gray-300 mt-2 leading-relaxed">
+                            Uma obra-prima complexa e sombria. O último trabalho completo de estúdio gravado pelo virtuoso Randy Rhoads.
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-purple-950/60 flex justify-between items-center text-xs">
+                        <span class="text-gray-400">Destaques:</span>
+                        <span class="text-agedGold font-semibold">Over the Mountain, Flying High Again</span>
+                    </div>
+                </div>
+
+                <!-- ALBUM 6 -->
+                <div class="gothic-box p-6 rounded-lg shadow-gothic-card hover:border-agedGold/80 transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="relative overflow-hidden rounded mb-4 h-52 bg-purple-950 flex items-center justify-center border border-agedGold/20">
+                            <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=500&q=80" alt="Album 13" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-70 group-hover:opacity-100">
+                            <span class="absolute top-2 right-2 px-2 py-1 bg-black/90 text-agedGold font-mono text-xs font-bold border border-agedGold/30">2013</span>
+                        </div>
+                        <span class="text-[10px] text-purple-400 font-bold uppercase tracking-widest block">Black Sabbath</span>
+                        <h3 class="text-xl font-gothic text-white font-bold group-hover:text-agedGold transition-colors">13</h3>
+                        <p class="text-xs text-gray-300 mt-2 leading-relaxed">
+                            O épico álbum de reencontro dos membros originais (Ozzy, Iommi e Geezer), alcançando o topo das paradas mundiais 43 anos depois.
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-purple-950/60 flex justify-between items-center text-xs">
+                        <span class="text-gray-400">Destaques:</span>
+                        <span class="text-agedGold font-semibold">God Is Dead?, Loner</span>
+                    </div>
+                </div>
+
             </div>
         </section>
 
-        <!-- 6. MINI QUIZ / TRIVIA -->
-        <section id="quiz" class="scroll-mt-24 space-y-8">
+        <!-- 6. SEÇÃO TRIVIA QUIZ INTERATIVO -->
+        <section id="quiz" class="scroll-mt-28 space-y-8">
             <div class="text-center space-y-3">
-                <h2 class="text-4xl sm:text-5xl font-metal text-metalGold tracking-wider text-glow-gold">
-                    DESAFIO TRIVIA HEAVY METAL
+                <span class="text-xs font-bold text-purple-400 uppercase tracking-widest">Teste Seus Conhecimentos</span>
+                <h2 class="text-3xl sm:text-5xl font-gothicHeader text-gold-metallic">
+                    QUIZ TRIVIA
                 </h2>
-                <div class="w-24 h-1 bg-purple-600 mx-auto rounded-full"></div>
-                <p class="text-gray-400 text-sm">Prove que você é um verdadeiro devoto do Rock!</p>
+                <div class="w-32 h-0.5 bg-gradient-to-r from-transparent via-agedGold to-transparent mx-auto"></div>
+                <p class="text-gray-400 text-xs sm:text-sm">Prove sua devoção ao templo do Heavy Metal.</p>
             </div>
 
-            <div class="bg-metalDark p-6 sm:p-10 rounded-3xl border border-purple-900/70 shadow-gothic max-w-3xl mx-auto space-y-6">
-                <!-- Quiz Header -->
-                <div class="flex justify-between items-center border-b border-purple-900/50 pb-4">
-                    <span id="quizProgress" class="text-xs font-bold uppercase tracking-widest text-purple-400">Pergunta 1 de 5</span>
-                    <span id="quizScore" class="text-xs font-bold uppercase tracking-widest text-metalGold">Pontos: 0</span>
+            <div class="gothic-box p-6 sm:p-10 rounded-xl max-w-3xl mx-auto shadow-gothic-card space-y-6">
+                
+                <!-- Status do Quiz -->
+                <div class="flex justify-between items-center border-b border-purple-900/50 pb-4 text-xs font-mono">
+                    <span id="quizStepText" class="text-purple-400 font-bold uppercase">Pergunta 1 de 5</span>
+                    <span id="quizScoreText" class="text-agedGold font-bold uppercase">Pontuação: 0</span>
                 </div>
 
-                <!-- Pergunta e Opções -->
-                <div id="quizContainer" class="space-y-6">
-                    <h3 id="quizQuestion" class="text-lg sm:text-xl font-semibold text-gray-100">
+                <!-- Pergunta -->
+                <div id="quizBody" class="space-y-6">
+                    <h3 id="quizQuestionTitle" class="text-lg sm:text-xl font-semibold text-gray-100 leading-snug">
                         Carregando pergunta...
                     </h3>
 
-                    <div id="quizOptions" class="grid gap-3">
-                        <!-- Opções geradas via JS -->
+                    <div id="quizOptionsContainer" class="grid gap-3">
+                        <!-- Opções geradas dinamicamente via JS -->
                     </div>
                 </div>
 
-                <!-- Feedback / Resultado do Quiz -->
-                <div id="quizResult" class="hidden text-center space-y-6 py-6">
-                    <div id="quizBadge" class="text-6xl">🤘</div>
-                    <h3 id="quizTitleResult" class="text-3xl font-metal text-metalGold">Você é um Deus do Metal!</h3>
-                    <p id="quizDescResult" class="text-gray-300">Sua pontuação foi excelente.</p>
-                    <button onclick="reiniciarQuiz()" class="px-6 py-3 bg-purple-900 hover:bg-purple-800 text-metalGold border border-metalGold rounded-xl font-bold">
-                        Tentar Novamente
+                <!-- Tela Final de Resultado -->
+                <div id="quizResultScreen" class="hidden text-center space-y-6 py-6">
+                    <div id="quizBadgeIcon" class="text-6xl">👑</div>
+                    <h3 id="quizResultTitle" class="text-3xl font-gothic text-agedGold">Guardião dos Riffs!</h3>
+                    <p id="quizResultDesc" class="text-sm text-gray-300 max-w-md mx-auto">Sua sabedoria sobre o Black Sabbath e Ozzy Osbourne é lendária.</p>
+                    <button onclick="reiniciarQuiz()" class="px-8 py-3 bg-imperialPurple hover:bg-deepPurple text-agedGold border border-agedGold rounded font-gothic text-xs font-bold uppercase tracking-wider transition-all">
+                        Refazer O Desafio
                     </button>
                 </div>
+
             </div>
         </section>
 
     </main>
 
-    <!-- RODAPÉ -->
-    <footer class="relative z-10 border-t border-purple-900/50 bg-black/90 py-8 text-center text-xs text-gray-500 space-y-2">
-        <p class="font-metal text-lg text-metalGold tracking-widest">LONG LIVE ROCK 'N' ROLL ⚡</p>
-        <p>Página de Homenagem ao Black Sabbath e Ozzy Osbourne. Criada com HTML, Tailwind CSS e Web Audio API.</p>
+    <!-- RODAPÉ COMPLETO -->
+    <footer class="relative z-10 border-t border-agedGold/20 bg-metalObsidian/95 py-12 text-center text-xs text-gray-500 space-y-4">
+        <div class="max-w-7xl mx-auto px-4 space-y-3">
+            <p class="font-gothicHeader text-xl text-gold-metallic tracking-widest">
+                LONG LIVE ROCK 'N' ROLL ⚡
+            </p>
+            <p class="text-gray-400 max-w-2xl mx-auto">
+                Página tributo interativa dedicada à preservação da memória e do legado cultural de Black Sabbath e Ozzy Osbourne.
+            </p>
+            <p class="text-[10px] text-gray-600 font-mono">
+                Desenvolvido com HTML, Tailwind CSS e Web Audio API (Sintetizador Procedural sem violação de Copyrights). Totalmente em conformidade com a LGPD.
+            </p>
+        </div>
     </footer>
 
-    <!-- SCRIPT JS INTERATIVO -->
+    <!-- JAVASCRIPT COMPLETO E INTERATIVO -->
     <script>
         /* ==========================================================================
-           1. ANIMAÇÃO DE MORCEGOS VOADORES (CANVAS OVERLAY)
+           1. CANVA AMBIENTAL (PARTÍCULAS SUTIS)
            ========================================================================== */
-        const canvas = document.getElementById('batCanvas');
-        const ctx = canvas.getContext('2d');
-        let bats = [];
+        const ambCanvas = document.getElementById('ambientCanvas');
+        const ambCtx = ambCanvas.getContext('2d');
+        let particles = [];
 
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+        function resizeAmbientCanvas() {
+            ambCanvas.width = window.innerWidth;
+            ambCanvas.height = window.innerHeight;
         }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
+        window.addEventListener('resize', resizeAmbientCanvas);
+        resizeAmbientCanvas();
 
-        class Bat {
-            constructor(x, y) {
-                this.x = x || Math.random() * canvas.width;
-                this.y = y || canvas.height + 50;
-                this.size = Math.random() * 15 + 12;
-                this.speedX = (Math.random() - 0.5) * 4;
-                this.speedY = -(Math.random() * 3 + 2);
-                this.wingAngle = 0;
-                this.wingSpeed = Math.random() * 0.2 + 0.15;
-                this.opacity = Math.random() * 0.5 + 0.5;
+        class Particle {
+            constructor() {
+                this.x = Math.random() * ambCanvas.width;
+                this.y = Math.random() * ambCanvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedY = -(Math.random() * 0.5 + 0.1);
+                this.speedX = (Math.random() - 0.5) * 0.3;
+                this.alpha = Math.random() * 0.5 + 0.1;
             }
-
             update() {
-                this.x += this.speedX;
                 this.y += this.speedY;
-                this.wingAngle += this.wingSpeed;
-
-                // Forçar sumir ao sair da tela
-                if (this.y < -50 || this.x < -50 || this.x > canvas.width + 50) {
-                    this.dead = true;
+                this.x += this.speedX;
+                if (this.y < 0) {
+                    this.y = ambCanvas.height;
+                    this.x = Math.random() * ambCanvas.width;
                 }
             }
-
             draw() {
-                ctx.save();
-                ctx.translate(this.x, this.y);
-                ctx.fillStyle = `rgba(20, 10, 30, ${this.opacity})`;
-                ctx.strokeStyle = `rgba(139, 92, 246, ${this.opacity * 0.6})`;
-                ctx.lineWidth = 1;
-
-                // Desenho simplificado do morcego em SVG/Path
-                const wing = Math.sin(this.wingAngle) * (this.size * 0.6);
-
-                ctx.beginPath();
-                // Corpo
-                ctx.arc(0, 0, this.size * 0.2, 0, Math.PI * 2);
-                // Asa Esquerda
-                ctx.moveTo(0, 0);
-                ctx.quadraticCurveTo(-this.size * 0.6, -this.size * 0.8 + wing, -this.size, 0 + wing);
-                ctx.quadraticCurveTo(-this.size * 0.5, this.size * 0.3, 0, 0);
-                // Asa Direita
-                ctx.moveTo(0, 0);
-                ctx.quadraticCurveTo(this.size * 0.6, -this.size * 0.8 + wing, this.size, 0 + wing);
-                ctx.quadraticCurveTo(this.size * 0.5, this.size * 0.3, 0, 0);
-
-                ctx.fill();
-                ctx.stroke();
-                ctx.restore();
+                ambCtx.fillStyle = `rgba(212, 175, 55, ${this.alpha})`;
+                ambCtx.beginPath();
+                ambCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ambCtx.fill();
             }
         }
 
-        function soltarMorcegos(qtd = 10) {
-            for (let i = 0; i < qtd; i++) {
-                setTimeout(() => {
-                    bats.push(new Bat());
-                }, i * 120);
-            }
+        for (let i = 0; i < 45; i++) {
+            particles.push(new Particle());
         }
 
-        function animateBats() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = bats.length - 1; i >= 0; i--) {
-                bats[i].update();
-                bats[i].draw();
-                if (bats[i].dead) {
-                    bats.splice(i, 1);
-                }
-            }
-            requestAnimationFrame(animateBats);
+        function animateAmbient() {
+            ambCtx.clearRect(0, 0, ambCanvas.width, ambCanvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateAmbient);
         }
-        animateBats();
+        animateAmbient();
 
-        // Soltar alguns morcegos no load da página
-        window.addEventListener('load', () => soltarMorcegos(6));
+        /* Mobile Menu Toggle */
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
 
         /* ==========================================================================
-           2. DISCOGRAFIA (DADOS E FILTRAGEM)
+           2. TURNÊS HISTÓRICAS (DADOS E FILTRAGEM)
            ========================================================================== */
-        const albuns = [
+        const turnesData = [
             {
-                titulo: "Black Sabbath",
-                ano: "1970",
-                categoria: "sabbath-ozzy",
-                capa: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400&q=80",
-                descricao: "O álbum que deu origem ao Heavy Metal. Sombrio, pesado e revolucionário.",
-                destaque: "Black Sabbath, N.I.B."
+                era: "sabbath-70s",
+                ano: "1970 - 1971",
+                titulo: "Black Sabbath Debut & Paranoid World Tours",
+                locais: "Europa & América do Norte (Londres, Birmingham, Nova York, Los Angeles)",
+                setlist: "Black Sabbath, N.I.B., War Pigs, Paranoid, Iron Man, Hand of Doom",
+                descricao: "A turnê que chocou o mundo. O som extremamente pesado e a estética obscura deixavam a crítica perplexa e os fãs eufóricos, consagrando o Sabbath como fenômeno de público."
             },
             {
-                titulo: "Paranoid",
-                ano: "1970",
-                categoria: "sabbath-ozzy",
-                capa: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&q=80",
-                descricao: "Contém os maiores clássicos do rock mundial, como Iron Man e War Pigs.",
-                destaque: "Paranoid, Iron Man, War Pigs"
+                era: "sabbath-70s",
+                ano: "1972 - 1974",
+                titulo: "Vol. 4 & Sabbath Bloody Sabbath Tours",
+                locais: "California Jam '74 (200.000 pessoas), Hollywood Bowl, Reino Unido",
+                setlist: "Supernaut, Snowblind, Sabbath Bloody Sabbath, Killing Yourself to Live",
+                descricao: "Apogeu criativo e produção épica. O concerto no festival California Jam de 1974 foi transmitido para milhões de pessoas na TV americana, consolidando o estatuto de superestrelas do rock."
             },
             {
-                titulo: "Master of Reality",
-                ano: "1971",
-                categoria: "sabbath-ozzy",
-                capa: "https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?w=400&q=80",
-                descricao: "Afinações graves e o nascimento do Stoner e Doom Metal.",
-                destaque: "Children of the Grave, Into the Void"
+                era: "ozzy-solo",
+                ano: "1980 - 1981",
+                titulo: "Blizzard of Ozz Tour (com Randy Rhoads)",
+                locais: "Turnê Mundial de Arenas (EUA, Reino Unido, Ásia)",
+                setlist: "Crazy Train, Mr. Crowley, Suicide Solution, I Don't Know, Paranoid",
+                descricao: "A espetacular estreia da carreira solo de Ozzy Osbourne. Os solos e riffs impressionantes do lendário jovem prodígio Randy Rhoads redefiniram a técnica da guitarra no rock dos anos 80."
             },
             {
-                titulo: "Heaven and Hell",
-                ano: "1980",
-                categoria: "sabbath-outros",
-                capa: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400&q=80",
-                descricao: "A estreia marcante de Ronnie James Dio nos vocais do Sabbath.",
-                destaque: "Heaven and Hell, Neon Knights"
+                era: "ozzy-solo",
+                ano: "1983 - 1986",
+                titulo: "Bark at the Moon & Ultimate Sin (Rock in Rio 1985)",
+                locais: "Rock in Rio I (Rio de Janeiro), Monsters of Rock, Arenas Globais",
+                setlist: "Bark at the Moon, Shot in the Dark, Mr. Crowley, Flying High Again",
+                descricao: "Apresentações teatrais históricas com cenários gigantescos de castelos góticos. No Brasil, Ozzy fez uma performance antológica para mais de 250.000 pessoas na primeira edição do Rock in Rio em 1985."
             },
             {
-                titulo: "Blizzard of Ozz",
-                ano: "1980",
-                categoria: "ozzy-solo",
-                capa: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=400&q=80",
-                descricao: "A espetacular estreia solo de Ozzy com os solos inesquecíveis de Randy Rhoads.",
-                destaque: "Crazy Train, Mr. Crowley"
-            },
-            {
-                titulo: "Bark at the Moon",
-                ano: "1983",
-                categoria: "ozzy-solo",
-                capa: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=400&q=80",
-                descricao: "Um clássico oitentista repleto de riffs rápidos e estética de lobisomem.",
-                destaque: "Bark at the Moon, Waiting for Darkness"
-            },
-            {
-                titulo: "No More Tears",
-                ano: "1991",
-                categoria: "ozzy-solo",
-                capa: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=400&q=80",
-                descricao: "Obra-prima dos anos 90 com a incrível guitarra de Zakk Wylde.",
-                destaque: "No More Tears, Mama I'm Coming Home"
-            },
-            {
-                titulo: "13",
-                ano: "2013",
-                categoria: "sabbath-ozzy",
-                capa: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&q=80",
-                descricao: "O aguardado reencontro dos membros originais para um álbum final.",
-                destaque: "God Is Dead?, Loner"
+                era: "despedida",
+                ano: "2016 - 2017",
+                titulo: "The End Tour - A Despedida do Black Sabbath",
+                locais: "Turnê Global de Despedida (81 Concertos em 28 Países)",
+                setlist: "Black Sabbath, Fairies Wear Boots, Into the Void, War Pigs, Iron Man, Paranoid",
+                descricao: "O grandioso capítulo final de 50 anos de história. A turnê encerrou-se em 4 de fevereiro de 2017 na Genting Arena, em Birmingham — exatamente na cidade natal onde o Heavy Metal nasceu."
             }
         ];
 
-        function renderizarDiscografia(lista) {
-            const container = document.getElementById('gridDiscografia');
+        function renderizarTurnes(lista) {
+            const container = document.getElementById('timelineContainer');
             container.innerHTML = '';
 
-            lista.forEach(album => {
-                const card = document.createElement('div');
-                card.className = 'bg-metalDark p-5 rounded-2xl border border-purple-900/50 shadow-md hover:border-metalGold/60 transition-all flex flex-col justify-between group';
-                card.innerHTML = `
-                    <div>
-                        <div class="relative overflow-hidden rounded-xl mb-4 h-48 bg-purple-950/40">
-                            <img src="${album.capa}" alt="${album.titulo}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-100">
-                            <span class="absolute top-2 right-2 px-2 py-1 bg-black/80 text-metalGold text-xs font-bold rounded border border-metalGold/30">${album.ano}</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-100 group-hover:text-metalGold transition-colors">${album.titulo}</h3>
-                        <p class="text-xs text-purple-400 font-semibold mb-2">${album.destaque}</p>
-                        <p class="text-xs text-gray-400 leading-relaxed">${album.descricao}</p>
+            lista.forEach((t) => {
+                const item = document.createElement('div');
+                item.className = 'relative group bg-metalCard/80 p-6 rounded-lg border border-purple-900/40 hover:border-agedGold/60 transition-all shadow-gothic-card';
+                item.innerHTML = `
+                    <div class="absolute -left-[31px] sm:-left-[47px] top-6 w-4 h-4 rounded-full bg-agedGold border-4 border-metalObsidian shadow-gold-glow"></div>
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                        <span class="px-3 py-1 bg-imperialPurple/60 text-agedGold text-xs font-mono font-bold rounded border border-agedGold/30">
+                            ${t.ano}
+                        </span>
+                        <span class="text-xs text-gray-400 font-semibold">${t.locais}</span>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-gothic text-white font-bold group-hover:text-agedGold transition-colors mb-2">
+                        ${t.titulo}
+                    </h3>
+                    <p class="text-xs sm:text-sm text-gray-300 leading-relaxed mb-4">
+                        ${t.descricao}
+                    </p>
+                    <div class="bg-metalObsidian/80 p-3 rounded border border-purple-950 text-xs">
+                        <span class="text-agedGold font-bold">Setlist Icônica em Destaque:</span>
+                        <span class="text-gray-300 italic block mt-1">${t.setlist}</span>
                     </div>
                 `;
-                container.appendChild(card);
+                container.appendChild(item);
             });
         }
 
-        function filtrarDiscografia(categoria) {
-            // Atualizar classes dos botoes
-            document.querySelectorAll('.btn-filtro').forEach(btn => {
-                btn.classList.remove('bg-purple-900', 'text-metalGold', 'border-metalGold');
-                btn.classList.add('bg-metalDark', 'text-gray-400', 'border-purple-900/50');
+        function filtrarTurnes(era) {
+            document.querySelectorAll('.btn-era').forEach(btn => {
+                btn.classList.remove('bg-imperialPurple', 'text-agedGold', 'border-agedGold');
+                btn.classList.add('bg-metalCharcoal', 'text-gray-400', 'border-purple-900/50');
             });
-            event.target.classList.add('bg-purple-900', 'text-metalGold', 'border-metalGold');
+            event.target.classList.add('bg-imperialPurple', 'text-agedGold', 'border-agedGold');
 
-            if (categoria === 'todos') {
-                renderizarDiscografia(albuns);
+            if (era === 'todas') {
+                renderizarTurnes(turnesData);
             } else {
-                const filtrados = albuns.filter(a => a.categoria === categoria);
-                renderizarDiscografia(filtrados);
+                const filtradas = turnesData.filter(t => t.era === era);
+                renderizarTurnes(filtradas);
             }
         }
-        renderizarDiscografia(albuns);
+        renderizarTurnes(turnesData);
 
         /* ==========================================================================
-           3. SINTETIZADOR DE RIFFS (WEB AUDIO API)
+           3. TOCA-DISCOS & SINTETIZADOR WEB AUDIO API
            ========================================================================== */
-        const faixas = [
-            { id: 0, titulo: "Paranoid", artista: "Black Sabbath", notas: [164.81, 196.00, 220.00], tempo: 160 },
-            { id: 1, titulo: "Iron Man", artista: "Black Sabbath", notas: [123.47, 146.83, 146.83, 164.81, 164.81], tempo: 90 },
-            { id: 2, titulo: "Crazy Train", artista: "Ozzy Osbourne", notas: [185.00, 185.00, 277.18, 185.00, 293.66], tempo: 138 },
-            { id: 3, titulo: "Bark at the Moon", artista: "Ozzy Osbourne", notas: [146.83, 174.61, 220.00, 196.00], tempo: 150 }
+        const riffsData = [
+            {
+                id: "black-sabbath",
+                titulo: "Black Sabbath",
+                album: "Black Sabbath (1970)",
+                tipo: "tritono",
+                notas: [98.00, 196.00, 138.59], // G2, G3, C#3 (Trítono)
+                duracoes: [1.2, 1.2, 2.5],
+                tempo: 60
+            },
+            {
+                id: "paranoid",
+                titulo: "Paranoid",
+                album: "Paranoid (1970)",
+                tipo: "guitarra",
+                notas: [164.81, 164.81, 196.00, 220.00, 164.81, 196.00, 146.83, 164.81], // E3, E3, G3, A3, E3, G3, D3, E3
+                duracoes: [0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.6],
+                tempo: 160
+            },
+            {
+                id: "iron-man",
+                titulo: "Iron Man",
+                album: "Paranoid (1970)",
+                tipo: "guitarra",
+                notas: [123.47, 146.83, 146.83, 164.81, 164.81, 196.00, 185.00, 196.00, 185.00, 146.83, 164.81], // B2, D3, D3, E3, E3, G3-F#3...
+                duracoes: [0.8, 0.8, 0.4, 0.8, 0.4, 0.3, 0.3, 0.3, 0.3, 0.4, 0.8],
+                tempo: 90
+            },
+            {
+                id: "war-pigs",
+                titulo: "War Pigs",
+                album: "Paranoid (1970)",
+                tipo: "guitarra",
+                notas: [164.81, 146.83, 130.81, 123.47, 164.81], // E3, D3, C3, B2, E3
+                duracoes: [0.6, 0.4, 0.4, 0.4, 1.2],
+                tempo: 92
+            },
+            {
+                id: "crazy-train",
+                titulo: "Crazy Train",
+                album: "Blizzard of Ozz (1980)",
+                tipo: "guitarra",
+                notas: [185.00, 185.00, 277.18, 185.00, 293.66, 185.00, 277.18, 185.00, 246.94, 220.00, 207.65, 220.00], // F#3, F#3, C#4, F#3, D4...
+                duracoes: [0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25, 0.25],
+                tempo: 138
+            },
+            {
+                id: "mr-crowley",
+                titulo: "Mr. Crowley",
+                album: "Blizzard of Ozz (1980)",
+                tipo: "orgao",
+                notas: [146.83, 220.00, 174.61, 164.81, 146.83, 138.59, 146.83], // Dm intro orgao
+                duracoes: [0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 1.2],
+                tempo: 110
+            }
         ];
 
         let audioCtx = null;
-        let isPlaying = false;
-        let faixaAtualIndex = 0;
-        let audioInterval = null;
-        let volumeGlobal = 0.7;
+        let masterGainNode = null;
+        let analyserNode = null;
+        let isSynthPlaying = false;
+        let selectedRiffIndex = 1; // Paranoid como padrão
+        let currentSpeedFactor = 1.0; // 33 RPM
+        let riffTimeout = null;
 
-        function initAudioContext() {
+        function initWebAudio() {
             if (!audioCtx) {
                 audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                masterGainNode = audioCtx.createGain();
+                masterGainNode.gain.value = 0.7;
+
+                analyserNode = audioCtx.createAnalyser();
+                analyserNode.fftSize = 64;
+
+                masterGainNode.connect(analyserNode);
+                analyserNode.connect(audioCtx.destination);
             }
-        }
-
-        function tocarNotaGuitarra(freq) {
-            if (!audioCtx) return;
-
-            // Criar Osciladores para som encorpado estilo Power Chord
-            const osc1 = audioCtx.createOscillator();
-            const osc2 = audioCtx.createOscillator();
-            const gainNode = audioCtx.createGain();
-            const distortion = audioCtx.createWaveShaper();
-
-            // Curva de Distorção Heavy Metal
-            function makeDistortionCurve(amount) {
-                let k = typeof amount === 'number' ? amount : 50,
-                    n_samples = 44100,
-                    curve = new Float32Array(n_samples),
-                    deg = Math.PI / 180,
-                    i = 0, x;
-                for (; i < n_samples; ++i) {
-                    x = i * 2 / n_samples - 1;
-                    curve[i] = (3 + k) * x * 20 * deg / (Math.PI + k * Math.abs(x));
-                }
-                return curve;
-            }
-
-            distortion.curve = makeDistortionCurve(400);
-            distortion.oversample = '4x';
-
-            osc1.type = 'sawtooth';
-            osc1.frequency.setValueAtTime(freq, audioCtx.currentTime);
-
-            // Quinta (Power Chord)
-            osc2.type = 'square';
-            osc2.frequency.setValueAtTime(freq * 1.5, audioCtx.currentTime);
-
-            gainNode.gain.setValueAtTime(volumeGlobal * 0.3, audioCtx.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.4);
-
-            osc1.connect(distortion);
-            osc2.connect(distortion);
-            distortion.connect(gainNode);
-            gainNode.connect(audioCtx.destination);
-
-            osc1.start();
-            osc2.start();
-            osc1.stop(audioCtx.currentTime + 0.4);
-            osc2.stop(audioCtx.currentTime + 0.4);
-
-            // Desenhar no Visualizador
-            triggerVisualizer();
-        }
-
-        function toggleAudio() {
-            initAudioContext();
             if (audioCtx.state === 'suspended') {
                 audioCtx.resume();
             }
+        }
 
-            if (isPlaying) {
-                pausarAudio();
+        // Curva de distorção suave para simular amplificador de guitarra a válvula
+        function makeDistortionCurve(amount) {
+            let k = typeof amount === 'number' ? amount : 50,
+                n_samples = 44100,
+                curve = new Float32Array(n_samples),
+                deg = Math.PI / 180,
+                i = 0, x;
+            for (; i < n_samples; ++i) {
+                x = i * 2 / n_samples - 1;
+                curve[i] = (3 + k) * x * 20 * deg / (Math.PI + k * Math.abs(x));
+            }
+            return curve;
+        }
+
+        function playSynthNote(freq, duracaoSec, tipo) {
+            if (!audioCtx) return;
+
+            const now = audioCtx.currentTime;
+            const dur = duracaoSec / currentSpeedFactor;
+            const scaledFreq = freq * currentSpeedFactor;
+
+            if (tipo === 'orgao') {
+                // Sintetizador de Órgão de Catedral (Mr. Crowley)
+                const osc1 = audioCtx.createOscillator();
+                const osc2 = audioCtx.createOscillator();
+                const noteGain = audioCtx.createGain();
+
+                osc1.type = 'sine';
+                osc1.frequency.setValueAtTime(scaledFreq, now);
+
+                osc2.type = 'square';
+                osc2.frequency.setValueAtTime(scaledFreq * 2, now); // Oitava acima
+
+                noteGain.gain.setValueAtTime(0.01, now);
+                noteGain.gain.linearRampToValueAtTime(0.2, now + 0.05);
+                noteGain.gain.exponentialRampToValueAtTime(0.001, now + dur);
+
+                osc1.connect(noteGain);
+                osc2.connect(noteGain);
+                noteGain.connect(masterGainNode);
+
+                osc1.start(now);
+                osc2.start(now);
+                osc1.stop(now + dur);
+                osc2.stop(now + dur);
+
             } else {
-                iniciarAudio();
+                // Sintetizador de Guitarra Heavy Metal com Distorção & Filtro
+                const osc1 = audioCtx.createOscillator();
+                const osc2 = audioCtx.createOscillator();
+                const distNode = audioCtx.createWaveShaper();
+                const filterNode = audioCtx.createBiquadFilter();
+                const noteGain = audioCtx.createGain();
+
+                osc1.type = 'sawtooth';
+                osc1.frequency.setValueAtTime(scaledFreq, now);
+
+                // Quinta para formação do Power Chord pesado
+                osc2.type = 'square';
+                osc2.frequency.setValueAtTime(scaledFreq * 1.498, now);
+
+                distNode.curve = makeDistortionCurve(350);
+                distNode.oversample = '4x';
+
+                filterNode.type = 'lowpass';
+                filterNode.frequency.setValueAtTime(2200, now);
+
+                noteGain.gain.setValueAtTime(0.01, now);
+                noteGain.gain.linearRampToValueAtTime(0.3, now + 0.02);
+                noteGain.gain.exponentialRampToValueAtTime(0.001, now + dur);
+
+                osc1.connect(distNode);
+                osc2.connect(distNode);
+                distNode.connect(filterNode);
+                filterNode.connect(noteGain);
+                noteGain.connect(masterGainNode);
+
+                osc1.start(now);
+                osc2.start(now);
+                osc1.stop(now + dur);
+                osc2.stop(now + dur);
             }
         }
 
-        function iniciarAudio() {
-            isPlaying = true;
-            document.getElementById('playIcon').innerText = "⏸ Pausar Riff";
-            document.getElementById('playerStatus').innerText = "Tocando";
-            document.getElementById('vinylRecord').classList.remove('paused');
-            document.getElementById('stylus').style.transform = 'rotate(0deg)';
+        function loopRiffSequence() {
+            if (!isSynthPlaying) return;
 
-            const faixa = faixas[faixaAtualIndex];
-            let notaIdx = 0;
+            const riff = riffsData[selectedRiffIndex];
+            let step = 0;
 
-            audioInterval = setInterval(() => {
-                tocarNotaGuitarra(faixa.notas[notaIdx]);
-                notaIdx = (notaIdx + 1) % faixa.notas.length;
-            }, (60 / faixa.tempo) * 500);
+            function playNextStep() {
+                if (!isSynthPlaying) return;
+
+                const freq = riff.notas[step];
+                const dur = riff.duracoes[step];
+
+                playSynthNote(freq, dur, riff.tipo);
+
+                step = (step + 1) % riff.notas.length;
+                const delayMs = (dur * 1000) / currentSpeedFactor;
+                riffTimeout = setTimeout(playNextStep, delayMs);
+            }
+
+            playNextStep();
         }
 
-        function pausarAudio() {
-            isPlaying = false;
-            clearInterval(audioInterval);
-            document.getElementById('playIcon').innerText = "▶ Tocar Riff";
-            document.getElementById('playerStatus').innerText = "Pausado";
-            document.getElementById('vinylRecord').classList.add('paused');
-            document.getElementById('stylus').style.transform = 'rotate(12deg)';
+        function toggleSynthPlay() {
+            initWebAudio();
+
+            if (isSynthPlaying) {
+                stopSynth();
+            } else {
+                startSynth();
+            }
         }
 
-        function selecionarFaixa(index) {
-            pausarAudio();
-            faixaAtualIndex = index;
-            const faixa = faixas[index];
-            document.getElementById('playerArtist').innerText = faixa.artista;
-            document.getElementById('playerTrackTitle').innerText = faixa.titulo;
-            document.getElementById('playerVinylTitle').innerText = faixa.titulo.split(" ")[0];
+        function startSynth() {
+            isSynthPlaying = true;
+            document.getElementById('playMasterText').innerText = "⏸ Pausar Toca-Discos";
+            document.getElementById('displayStatus').innerText = "Tocando";
+            document.getElementById('displayStatus').className = "px-3 py-1 bg-green-900/60 border border-green-500 text-green-300 text-xs font-mono rounded";
             
-            // Atualizar visual da lista
-            renderizarTrackList();
-            iniciarAudio();
+            // Ativar Animação do Vinil e Braço
+            document.getElementById('vinylDisc').classList.remove('paused-vinyl');
+            document.getElementById('tonearm').className = "tonearm tonearm-playing w-full h-full relative";
+
+            loopRiffSequence();
+            drawAudioVisualizer();
         }
 
-        function setVolume(val) {
-            volumeGlobal = parseFloat(val);
+        function stopSynth() {
+            isSynthPlaying = false;
+            clearTimeout(riffTimeout);
+
+            document.getElementById('playMasterText').innerText = "▶ Iniciar Leitura do Disco";
+            document.getElementById('displayStatus').innerText = "Pausado";
+            document.getElementById('displayStatus').className = "px-3 py-1 bg-imperialPurple/50 border border-agedGold/40 text-agedGold text-xs font-mono rounded";
+
+            // Pausar Animação do Vinil e Braço
+            document.getElementById('vinylDisc').classList.add('paused-vinyl');
+            document.getElementById('tonearm').className = "tonearm tonearm-idle w-full h-full relative";
         }
 
-        function renderizarTrackList() {
-            const container = document.getElementById('trackList');
+        function selecionarRiff(index) {
+            stopSynth();
+            selectedRiffIndex = index;
+            const r = riffsData[index];
+
+            document.getElementById('displayArtist').innerText = r.album;
+            document.getElementById('displayTrack').innerText = r.titulo;
+            document.getElementById('labelTrackName').innerText = r.titulo.substring(0, 10);
+
+            renderizarRiffsGrid();
+            startSynth();
+        }
+
+        function setRPM(factor, label) {
+            currentSpeedFactor = factor;
+            document.querySelectorAll('#rpm33, #rpm45, #rpm16').forEach(btn => {
+                btn.className = "px-3 py-1 bg-black/40 border border-purple-900 text-gray-400 text-xs font-bold rounded hover:text-white";
+            });
+            document.getElementById(`rpm${label}`).className = "px-3 py-1 bg-imperialPurple border border-agedGold text-agedGold text-xs font-bold rounded";
+        }
+
+        function updateVolume(val) {
+            if (masterGainNode) {
+                masterGainNode.gain.value = parseFloat(val);
+            }
+        }
+
+        function renderizarRiffsGrid() {
+            const container = document.getElementById('riffsGrid');
             container.innerHTML = '';
-            faixas.forEach((f, idx) => {
-                const isSelected = idx === faixaAtualIndex;
+
+            riffsData.forEach((r, idx) => {
+                const isSelected = idx === selectedRiffIndex;
                 const btn = document.createElement('button');
-                btn.onclick = () => selecionarFaixa(idx);
-                btn.className = `p-3 rounded-xl border text-left text-xs font-bold transition-all flex items-center justify-between ${
+                btn.onclick = () => selecionarRiff(idx);
+                btn.className = `p-3 rounded border text-left text-xs font-bold transition-all flex items-center justify-between ${
                     isSelected 
-                    ? 'bg-purple-900/80 border-metalGold text-metalGold shadow-gold-glow' 
-                    : 'bg-black/40 border-purple-900/40 text-gray-300 hover:border-purple-600'
+                    ? 'bg-imperialPurple border-agedGold text-agedGold shadow-gold-glow' 
+                    : 'bg-metalObsidian/80 border-purple-900/40 text-gray-300 hover:border-purple-600'
                 }`;
                 btn.innerHTML = `
-                    <span>${f.titulo}</span>
-                    <span class="text-[10px] opacity-70">${f.artista}</span>
+                    <div class="truncate">
+                        <span class="block text-white">${r.titulo}</span>
+                        <span class="text-[10px] text-gray-400 font-normal">${r.album}</span>
+                    </div>
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-black/50 text-purple-300">${r.tipo === 'orgao' ? '🎹 Organ' : '🎸 Riff'}</span>
                 `;
                 container.appendChild(btn);
             });
         }
-        renderizarTrackList();
+        renderizarRiffsGrid();
 
-        // Canvas Visualizador Simulado
-        const vCanvas = document.getElementById('visualizerCanvas');
+        /* Visualizador de Áudio Canvas */
+        const vCanvas = document.getElementById('audioVisualizer');
         const vCtx = vCanvas.getContext('2d');
-        function triggerVisualizer() {
+
+        function drawAudioVisualizer() {
+            if (!isSynthPlaying) {
+                vCtx.clearRect(0, 0, vCanvas.width, vCanvas.height);
+                return;
+            }
+
+            requestAnimationFrame(drawAudioVisualizer);
+
             vCanvas.width = vCanvas.offsetWidth;
             vCanvas.height = vCanvas.offsetHeight;
-            vCtx.clearRect(0, 0, vCanvas.width, vCanvas.height);
-            
-            const bars = 25;
-            const barWidth = vCanvas.width / bars;
 
-            for (let i = 0; i < bars; i++) {
-                const height = Math.random() * vCanvas.height * 0.8;
-                vCtx.fillStyle = `rgba(139, 92, 246, ${Math.random() * 0.8 + 0.2})`;
-                vCtx.fillRect(i * barWidth, vCanvas.height - height, barWidth - 2, height);
+            const bufferLength = analyserNode.frequencyBinCount;
+            const dataArray = new Uint8Array(bufferLength);
+            analyserNode.getByteFrequencyData(dataArray);
+
+            vCtx.fillStyle = 'rgba(7, 6, 9, 0.4)';
+            vCtx.fillRect(0, 0, vCanvas.width, vCanvas.height);
+
+            const barWidth = (vCanvas.width / bufferLength) * 2;
+            let barHeight;
+            let x = 0;
+
+            for (let i = 0; i < bufferLength; i++) {
+                barHeight = (dataArray[i] / 255) * vCanvas.height;
+
+                vCtx.fillStyle = `rgba(212, 175, 55, ${dataArray[i] / 255 + 0.2})`;
+                vCtx.fillRect(x, vCanvas.height - barHeight, barWidth - 1, barHeight);
+
+                x += barWidth;
             }
         }
 
         /* ==========================================================================
-           4. GERADOR DE FRASES DE OZZY OSBOURNE
+           4. QUIZ TRIVIA INTERATIVO
            ========================================================================== */
-        const frasesOzzy = [
-            "De todas as coisas que perdi ao longo da vida, é da minha mente que sinto mais falta!",
-            "Eu realmente pensei que aquele morcego no palco era de borracha... até ele morder a minha língua!",
-            "Eles dizem que eu sou o Príncipe das Trevas, mas eu só gosto mesmo é de uma boa xícara de chá e sossego.",
-            "Você não pode matar o Rock and Roll. Ele já está gravado na alma da humanidade.",
-            "O som da fábrica de prensar metais em Birmingham nos deu a raiva e o peso que criaram o Black Sabbath.",
-            "A música sempre foi a única coisa que me manteve são quando o resto do mundo enlouquecia.",
-            "Eu faço loucuras no palco, mas no fundo só quero ver as pessoas sorrindo e se divertindo."
-        ];
-
-        function gerarFraseOzzy() {
-            const el = document.getElementById('ozzyQuoteText');
-            el.style.opacity = '0';
-            soltarMorcegos(4);
-
-            setTimeout(() => {
-                const index = Math.floor(Math.random() * frasesOzzy.length);
-                el.innerText = `"${frasesOzzy[index]}"`;
-                el.style.opacity = '1';
-            }, 300);
-        }
-
-        /* ==========================================================================
-           5. MINI TRIVIA QUIZ
-           ========================================================================== */
-        const perguntas = [
+        const perguntasQuiz = [
             {
-                q: "Em qual cidade britânica o Black Sabbath foi formado em 1968?",
-                opcoes: ["Londres", "Liverpool", "Birmingham", "Manchester"],
-                correta: 2
-            },
-            {
-                q: "Qual o nome verdadeiro do vocalista Ozzy Osbourne?",
-                opcoes: ["John Michael Osbourne", "William Ozzy Osbourne", "James Osbourne", "Oliver Osbourne"],
-                correta: 0
-            },
-            {
-                q: "Qual famoso acidente ocorreu no palco com Ozzy em Des Moines (1982)?",
-                opcoes: ["Quebrou o pedestal", "Mordeu a cabeça de um morcego", "Caiu da bateria", "Incendiou o microfone"],
+                pergunta: "Qual tragédia fabril em Birmingham influenciou diretamente o som e a afinação da guitarra de Tony Iommi?",
+                opcoes: [
+                    "Sua guitarra foi destruída em um incêndio na fábrica",
+                    "Ele perdeu as pontas de dois dedos, precisando afinar as cordas mais graves",
+                    "Sua audição foi parcialmente afetada por uma explosão de máquinas",
+                    "A fábrica faliu e ele usou o dinheiro da rescisão para comprar um amplificador"
+                ],
                 correta: 1
             },
             {
-                q: "Qual elemento musical ajudou a definir o som sombrio do Black Sabbath?",
-                opcoes: ["A Escala Maior", "O Trítono (Intervalo do Diabo)", "O Acorde de Sétima", "Ritmo de Bossa Nova"],
+                pergunta: "Qual intervalo musical tenebroso foi ressuscitado na música de estreia do Black Sabbath em 1970?",
+                opcoes: [
+                    "Escola Pentatônica Maior",
+                    "O Trítono (Intervalo do Diabo)",
+                    "Escala Cromática de Bossa Nova",
+                    "Arpejo Neoclássico em LÁ Menor"
+                ],
                 correta: 1
             },
             {
-                q: "Quem foi o genial guitarrista solo do álbum 'Blizzard of Ozz'?",
-                opcoes: ["Zakk Wylde", "Tony Iommi", "Randy Rhoads", "Slash"],
+                pergunta: "Qual baixista e letrista introduziu o uso marcante do pedal Wah-Wah no baixo na faixa 'N.I.B.'?",
+                opcoes: ["Lemmy Kilmister", "Cliff Burton", "Geezer Butler", "Bob Daisley"],
                 correta: 2
+            },
+            {
+                pergunta: "Em qual histórico álbum solo de Ozzy Osbourne o virtuoso guitarrista Randy Rhoads estreou?",
+                opcoes: ["Bark at the Moon", "Blizzard of Ozz", "No More Tears", "Ultimate Sin"],
+                correta: 1
+            },
+            {
+                pergunta: "Em 4 de fevereiro de 2017, o Black Sabbath realizou seu último concerto da turnê 'The End' em qual cidade?",
+                opcoes: ["Nova York", "Londres", "Los Angeles", "Birmingham"],
+                correta: 3
             }
         ];
 
         let quizIndex = 0;
-        let pontuacao = 0;
+        let quizScore = 0;
 
-        function carregarPergunta() {
-            const p = perguntas[quizIndex];
-            document.getElementById('quizProgress').innerText = `Pergunta ${quizIndex + 1} de ${perguntas.length}`;
-            document.getElementById('quizScore').innerText = `Pontos: ${pontuacao}`;
-            document.getElementById('quizQuestion').innerText = p.q;
+        function carregarPerguntaQuiz() {
+            const q = perguntasQuiz[quizIndex];
+            document.getElementById('quizStepText').innerText = `Pergunta ${quizIndex + 1} de ${perguntasQuiz.length}`;
+            document.getElementById('quizScoreText').innerText = `Pontuação: ${quizScore}`;
+            document.getElementById('quizQuestionTitle').innerText = q.pergunta;
 
-            const optsContainer = document.getElementById('quizOptions');
-            optsContainer.innerHTML = '';
+            const container = document.getElementById('quizOptionsContainer');
+            container.innerHTML = '';
 
-            p.opcoes.forEach((opcao, idx) => {
+            q.opcoes.forEach((opcao, idx) => {
                 const btn = document.createElement('button');
                 btn.onclick = () => responderQuiz(idx);
-                btn.className = "w-full p-4 bg-purple-950/40 hover:bg-purple-900/60 border border-purple-800/40 hover:border-metalGold rounded-xl text-left text-sm font-semibold transition-all text-gray-200";
-                btn.innerText = `${idx + 1}. ${opcao}`;
-                optsContainer.appendChild(btn);
+                btn.className = "w-full p-4 bg-metalCharcoal hover:bg-imperialPurple/60 border border-purple-900/40 hover:border-agedGold rounded text-left text-xs sm:text-sm font-semibold transition-all text-gray-200";
+                btn.innerText = `${String.fromCharCode(65 + idx)}) ${opcao}`;
+                container.appendChild(btn);
             });
         }
 
-        function responderQuiz(opcaoSelecionada) {
-            const p = perguntas[quizIndex];
-            if (opcaoSelecionada === p.correta) {
-                pontuacao += 20;
-                tocarNotaGuitarra(440); // Efeito sonoro festivo
+        function responderQuiz(indexOpcao) {
+            const q = perguntasQuiz[quizIndex];
+            if (indexOpcao === q.correta) {
+                quizScore += 20;
+                initWebAudio();
+                playSynthNote(440, 0.3, 'guitarra'); // Som positivo
             } else {
-                tocarNotaGuitarra(110); // Efeito grave
+                initWebAudio();
+                playSynthNote(110, 0.4, 'guitarra'); // Som grave
             }
 
             quizIndex++;
-            if (quizIndex < perguntas.length) {
-                carregarPergunta();
+            if (quizIndex < perguntasQuiz.length) {
+                carregarPerguntaQuiz();
             } else {
                 exibirResultadoQuiz();
             }
         }
 
         function exibirResultadoQuiz() {
-            document.getElementById('quizContainer').classList.add('hidden');
-            const res = document.getElementById('quizResult');
+            document.getElementById('quizBody').classList.add('hidden');
+            const res = document.getElementById('quizResultScreen');
             res.classList.remove('hidden');
 
-            const title = document.getElementById('quizTitleResult');
-            const desc = document.getElementById('quizDescResult');
-            const badge = document.getElementById('quizBadge');
+            const badge = document.getElementById('quizBadgeIcon');
+            const title = document.getElementById('quizResultTitle');
+            const desc = document.getElementById('quizResultDesc');
 
-            if (pontuacao === 100) {
+            if (quizScore === 100) {
                 badge.innerText = "👑🦇";
                 title.innerText = "Príncipe das Trevas!";
-                desc.innerText = `Pontuação Perfeita (${pontuacao} pts)! Você domina a história do Black Sabbath e do Ozzy!`;
-                soltarMorcegos(20);
-            } else if (pontuacao >= 60) {
-                badge.innerText = "🤘⚡";
-                title.innerText = "Mestre do Headbanging!";
-                desc.innerText = `Você fez ${pontuacao} pontos! Um verdadeiro fã de Heavy Metal.`;
+                desc.innerText = `Pontuação Perfeita (${quizScore} pts)! Você é um profundo conhecedor da história e dos segredos de Sabbath e Ozzy!`;
+            } else if (quizScore >= 60) {
+                badge.innerText = "🎸⚡";
+                title.innerText = "Lorde dos Riffs!";
+                desc.innerText = `Você conquistou ${quizScore} pontos. Seu conhecimento sobre o Heavy Metal é impressionante!`;
             } else {
-                badge.innerText = "🎸";
-                title.innerText = "Aprendiz de Rocker";
-                desc.innerText = `Você fez ${pontuacao} pontos. Ouça mais Paranoid e tente novamente!`;
+                badge.innerText = "🔊";
+                title.innerText = "Discipulo do Rock";
+                desc.innerText = `Você fez ${quizScore} pontos. Continue ouvindo os clássicos do Sabbath e tente novamente!`;
             }
         }
 
         function reiniciarQuiz() {
             quizIndex = 0;
-            pontuacao = 0;
-            document.getElementById('quizResult').classList.add('hidden');
-            document.getElementById('quizContainer').classList.remove('hidden');
-            carregarPergunta();
+            quizScore = 0;
+            document.getElementById('quizResultScreen').classList.add('hidden');
+            document.getElementById('quizBody').classList.remove('hidden');
+            carregarPerguntaQuiz();
         }
 
-        carregarPergunta();
+        carregarPerguntaQuiz();
     </script>
 </body>
 </html>
